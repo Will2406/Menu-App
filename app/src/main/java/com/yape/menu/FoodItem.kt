@@ -84,7 +84,7 @@ fun FoodMainItem(modifier: Modifier = Modifier) {
             )
 
             FoodItemAttribute(icon = R.drawable.ic_comment, description = "500+ reviews")
-            FoodItemAttribute(icon = R.drawable.ic_comment, description = "100-300 calories")
+            FoodItemAttribute(icon = R.drawable.ic_calories, description = "100-300 calories")
 
             Spacer(modifier = Modifier.height(8.dp))
             Text(text = "$12", fontSize = 18.sp, style = MaterialTheme.typography.titleSmall)
@@ -141,7 +141,7 @@ fun FoodStatsItem(modifier: Modifier = Modifier) {
                 )
 
                 FoodItemAttribute(icon = R.drawable.ic_comment, description = "500+ reviews")
-                FoodItemAttribute(icon = R.drawable.ic_comment, description = "500+ reviews")
+                FoodItemAttribute(icon = R.drawable.ic_calories, description = "100-300 calories")
             }
         }
     }

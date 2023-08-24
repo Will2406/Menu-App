@@ -28,7 +28,7 @@ fun CategoryMainItem(text: String) {
         modifier = Modifier
             .padding(start = 12.dp, top = 12.dp, bottom = 12.dp)
             .width(100.dp)
-            .height(140.dp)
+            .height(120.dp)
     ) {
         Column {
             Image(
@@ -47,7 +47,7 @@ fun CategoryMainItem(text: String) {
                     .padding(top = 6.dp),
                 textAlign = TextAlign.Center,
                 fontSize = 20.sp,
-                style = MaterialTheme.typography.titleSmall
+                style = MaterialTheme.typography.displayMedium
             )
         }
     }
