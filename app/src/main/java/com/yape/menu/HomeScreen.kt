@@ -40,27 +40,22 @@ import com.google.accompanist.flowlayout.SizeMode
 
 @Composable
 fun HomeScreen() {
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
+    LazyColumn(
+        modifier = Modifier.fillMaxSize()
     ) {
-        LazyColumn(
-            modifier = Modifier.fillMaxSize()
-        ) {
-            item {
-                Text(
-                    text = "Welcome,\nDaniel Quispe",
-                    fontSize = 20.sp,
-                    style = MaterialTheme.typography.displayMedium,
-                    modifier = Modifier.padding(16.dp)
-                )
-            }
-
-            item { CategorySection() }
-
-            item { FoodSection() }
-
+        item {
+            Text(
+                text = "Welcome,\nDaniel Quispe",
+                fontSize = 20.sp,
+                style = MaterialTheme.typography.displayMedium,
+                modifier = Modifier.padding(16.dp)
+            )
         }
+
+        item { CategorySection() }
+
+        item { FoodSection() }
+
     }
 }
 

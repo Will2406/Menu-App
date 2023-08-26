@@ -2,6 +2,7 @@ package com.yape.menu
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -83,8 +84,18 @@ fun FoodMainItem(modifier: Modifier = Modifier) {
                 style = MaterialTheme.typography.titleSmall
             )
 
-            FoodItemAttribute(icon = R.drawable.ic_comment, description = "500+ reviews")
-            FoodItemAttribute(icon = R.drawable.ic_calories, description = "100-300 calories")
+            FoodItemAttribute(
+                icon = R.drawable.ic_comment,
+                description = "500+ reviews",
+                type = FoodAttributeType.HORIZONTAL
+            )
+
+            FoodItemAttribute(
+                icon = R.drawable.ic_calories,
+                description = "100-300 calories",
+                type = FoodAttributeType.HORIZONTAL
+            )
+
 
             Spacer(modifier = Modifier.height(8.dp))
             Text(text = "$12", fontSize = 18.sp, style = MaterialTheme.typography.titleSmall)
@@ -140,16 +151,38 @@ fun FoodStatsItem(modifier: Modifier = Modifier) {
                     style = MaterialTheme.typography.titleSmall
                 )
 
-                FoodItemAttribute(icon = R.drawable.ic_comment, description = "500+ reviews")
-                FoodItemAttribute(icon = R.drawable.ic_calories, description = "100-300 calories")
+                FoodItemAttribute(
+                    icon = R.drawable.ic_comment,
+                    description = "500+ reviews",
+                    type = FoodAttributeType.HORIZONTAL
+                )
+
+                FoodItemAttribute(
+                    icon = R.drawable.ic_calories,
+                    description = "100-300 calories",
+                    type = FoodAttributeType.HORIZONTAL
+                )
             }
+        }
+    }
+}
+
+@Composable
+fun FoodItemAttribute(modifier: Modifier = Modifier, icon: Int, description: String, type: FoodAttributeType) {
+    when (type) {
+        FoodAttributeType.HORIZONTAL -> {
+            FoodItemAttributeHorizontal(modifier = modifier, icon = icon, description = description)
+        }
+
+        FoodAttributeType.VERTICAL -> {
+            FoodItemAttributeVertical(modifier = modifier, icon = icon, description = description)
         }
     }
 }
 
 
 @Composable
-fun FoodItemAttribute(icon: Int, description: String) {
+private fun FoodItemAttributeHorizontal(modifier: Modifier = Modifier, icon: Int, description: String) {
     Row(verticalAlignment = Alignment.CenterVertically) {
         Image(
             painter = painterResource(id = icon),
@@ -165,6 +198,80 @@ fun FoodItemAttribute(icon: Int, description: String) {
     }
 }
 
+@Composable
+private fun FoodItemAttributeVertical(modifier: Modifier = Modifier, icon: Int, description: String) {
+    Row(
+        modifier = modifier.fillMaxWidth(),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.Center
+    ) {
+        Image(
+            painter = painterResource(id = icon),
+            contentDescription = null,
+            modifier = Modifier.height(16.dp)
+        )
+        Column(modifier = Modifier.padding(start = 4.dp)) {
+            Text(
+                text = description.split(" ").first(),
+                modifier = Modifier.padding(start = 4.dp),
+                fontSize = 18.sp,
+                style = MaterialTheme.typography.displayMedium
+            )
+            Text(
+                text = description.split(" ").last(),
+                modifier = Modifier.padding(start = 4.dp),
+                fontSize = 18.sp,
+                style = MaterialTheme.typography.bodySmall
+            )
+        }
+    }
+}
+
+@Composable
+fun FoodIngredient() {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(32.dp)
+    ) {
+        Text(
+            text = "Arroz",
+            fontSize = 14.sp,
+            style = MaterialTheme.typography.displayMedium
+        )
+        Spacer(modifier = Modifier.weight(1f))
+        Text(
+            text = "50 calories",
+            fontSize = 14.sp,
+            style = MaterialTheme.typography.displayMedium
+        )
+    }
+}
+
+enum class FoodAttributeType {
+    HORIZONTAL,
+    VERTICAL
+}
+
+@Preview(showBackground = true)
+@Composable
+fun FoodMainAttributePreview() {
+    MaterialTheme {
+        Column {
+            FoodItemAttribute(
+                icon = R.drawable.ic_comment,
+                description = "500+ reviews",
+                type = FoodAttributeType.HORIZONTAL
+            )
+
+            FoodItemAttribute(
+                icon = R.drawable.ic_calories,
+                description = "100-300 Calories",
+                type = FoodAttributeType.VERTICAL
+            )
+        }
+    }
+}
 
 @Preview(showBackground = true)
 @Composable
