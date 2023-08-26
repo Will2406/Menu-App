@@ -255,6 +255,14 @@ enum class FoodAttributeType {
 
 @Preview(showBackground = true)
 @Composable
+fun FoodIngredientPreview() {
+    MaterialTheme {
+        FoodIngredient()
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
 fun FoodMainAttributePreview() {
     MaterialTheme {
         Column {
