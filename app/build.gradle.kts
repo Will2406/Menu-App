@@ -84,10 +84,13 @@ dependencies {
     implementation("com.google.dagger:hilt-android:2.45")
     kapt("com.google.dagger:hilt-compiler:2.45")
 
-    implementation( "com.squareup.okhttp3:okhttp:4.10.0")
-    implementation( "com.squareup.okhttp3:logging-interceptor:4.9.3")
+    implementation("com.squareup.okhttp3:okhttp:4.10.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.9.3")
 
     implementation("io.coil-kt:coil-compose:2.0.0-rc01")
+
+    implementation("com.google.maps.android:maps-compose:1.0.0")
+    implementation("com.google.android.gms:play-services-maps:18.0.2")
 
 
 }

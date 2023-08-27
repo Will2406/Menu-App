@@ -49,4 +49,9 @@ sealed class BottomBarNav(
             newValue = Uri.encode(food)
         )
     }
+
+    object FoodMapScreen : BottomBarNav(
+        route = "FoodMap",
+        title = "FoodMap"
+    )
 }

@@ -44,6 +44,7 @@ import com.yape.menu.HeaderComponent
 import com.yape.menu.R
 import com.yape.menu.data.response.IngredientResponse
 import com.yape.menu.domain.TrendingFoodModel
+import com.yape.menu.navigation.BottomBarNav
 import com.yape.menu.ui.theme.gray50Percent
 import com.yape.menu.ui.theme.transparent
 import kotlinx.coroutines.flow.StateFlow
@@ -113,7 +114,7 @@ private fun FoodDetailScreen(navHostController: NavHostController, state: StateF
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(16.dp),
-                onClick = {},
+                onClick = { navHostController.navigate(BottomBarNav.FoodMapScreen.route) },
                 colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF7B8264))
             ) {
                 Text(

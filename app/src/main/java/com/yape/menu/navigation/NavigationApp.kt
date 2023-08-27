@@ -16,6 +16,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.navArgument
 import com.yape.menu.R
+import com.yape.menu.screen.FoodMapScreen
 import com.yape.menu.screen.OrderScreen
 import com.yape.menu.screen.ProfileScreen
 import com.yape.menu.screen.SavedScreen
@@ -40,6 +41,7 @@ fun Navigation(navController: NavHostController) {
                 }
             )
         ) { InitFoodDetailScreen(navController) }
+        composable(route = BottomBarNav.FoodMapScreen.route) { FoodMapScreen() }
     }
 }
 
