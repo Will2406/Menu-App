@@ -24,16 +24,19 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Constraints
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
+import coil.compose.rememberAsyncImagePainter
+import com.yape.menu.domain.TrendingFoodModel
 
 
 @Composable
-fun FoodMainItem(modifier: Modifier = Modifier) {
+fun FoodMainItem(modifier: Modifier = Modifier, foodTrending: TrendingFoodModel) {
     Box(
         modifier = modifier
             .fillMaxWidth()
@@ -43,12 +46,13 @@ fun FoodMainItem(modifier: Modifier = Modifier) {
         Column {
             Box {
                 Image(
-                    painter = painterResource(id = R.drawable.poke),
+                    painter = rememberAsyncImagePainter(foodTrending.image, contentScale = ContentScale.Crop),
                     contentScale = ContentScale.Crop,
                     contentDescription = null,
                     modifier = Modifier
-                        .height(100.dp)
                         .clip(RoundedCornerShape(10.dp))
+                        .fillMaxWidth()
+                        .height(100.dp)
                 )
 
                 Box(
@@ -67,7 +71,7 @@ fun FoodMainItem(modifier: Modifier = Modifier) {
                             modifier = Modifier.height(16.dp)
                         )
                         Text(
-                            text = "4.6",
+                            text = foodTrending.rating,
                             modifier = Modifier.padding(horizontal = 2.dp),
                             fontSize = 16.sp,
                             style = MaterialTheme.typography.displayMedium
@@ -78,27 +82,29 @@ fun FoodMainItem(modifier: Modifier = Modifier) {
             }
 
             Text(
-                text = "Garden Salad",
+                text = foodTrending.name,
                 modifier = Modifier.padding(vertical = 4.dp),
                 fontSize = 20.sp,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
                 style = MaterialTheme.typography.titleSmall
             )
 
             FoodItemAttribute(
                 icon = R.drawable.ic_comment,
-                description = "500+ reviews",
+                description = foodTrending.reviewers,
                 type = FoodAttributeType.HORIZONTAL
             )
 
             FoodItemAttribute(
                 icon = R.drawable.ic_calories,
-                description = "100-300 calories",
+                description = foodTrending.calories,
                 type = FoodAttributeType.HORIZONTAL
             )
 
 
             Spacer(modifier = Modifier.height(8.dp))
-            Text(text = "$12", fontSize = 18.sp, style = MaterialTheme.typography.titleSmall)
+            Text(text = foodTrending.price, fontSize = 18.sp, style = MaterialTheme.typography.titleSmall)
         }
 
     }
@@ -228,20 +234,20 @@ private fun FoodItemAttributeVertical(modifier: Modifier = Modifier, icon: Int, 
 }
 
 @Composable
-fun FoodIngredient() {
+fun FoodIngredient(name: String, calories: String) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .height(32.dp)
     ) {
         Text(
-            text = "Arroz",
+            text = name,
             fontSize = 14.sp,
             style = MaterialTheme.typography.displayMedium
         )
         Spacer(modifier = Modifier.weight(1f))
         Text(
-            text = "50 calories",
+            text = calories,
             fontSize = 14.sp,
             style = MaterialTheme.typography.displayMedium
         )
@@ -257,7 +263,7 @@ enum class FoodAttributeType {
 @Composable
 fun FoodIngredientPreview() {
     MaterialTheme {
-        FoodIngredient()
+        FoodIngredient("","")
     }
 }
 
@@ -285,7 +291,7 @@ fun FoodMainAttributePreview() {
 @Composable
 fun FoodMainItemPreview() {
     MaterialTheme {
-        FoodMainItem(modifier = Modifier.width(200.dp))
+        // FoodMainItem(modifier = Modifier.width(200.dp))
     }
 }
 

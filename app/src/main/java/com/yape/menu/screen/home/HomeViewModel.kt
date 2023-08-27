@@ -3,6 +3,7 @@ package com.yape.menu.screen.home
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.yape.menu.domain.GetCategoryList
+import com.yape.menu.domain.GetFoodTrendingList
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -14,7 +15,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val getCategoryList: GetCategoryList
+    private val getCategoryList: GetCategoryList,
+    private val getFoodTrendingList: GetFoodTrendingList
 ) : ViewModel() {
 
     private val _viewState = MutableStateFlow(HomeUiState())
@@ -25,7 +27,11 @@ class HomeViewModel @Inject constructor(
         viewModelScope.launch {
             getCategoryList()
                 .catch { cause -> _viewState.update { it.copy(error = true) } }
-                .collect { categoryList -> _viewState.update { HomeUiState(categoryList = categoryList) } }
+                .collect { categoryList -> _viewState.update { _viewState.value.copy(categoryList = categoryList) } }
+
+            getFoodTrendingList()
+                .catch { cause -> _viewState.update { it.copy(error = true) } }
+                .collect { foodTrendingList -> _viewState.update { _viewState.value.copy(foodTrendingList = foodTrendingList) } }
         }
     }
 

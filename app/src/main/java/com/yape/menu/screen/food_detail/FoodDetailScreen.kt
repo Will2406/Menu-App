@@ -1,4 +1,4 @@
-package com.yape.menu.screen
+package com.yape.menu.screen.food_detail
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -18,16 +18,22 @@ import androidx.compose.material3.Divider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.State
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.zIndex
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavHostController
+import coil.compose.rememberAsyncImagePainter
 import com.google.accompanist.flowlayout.FlowMainAxisAlignment
 import com.google.accompanist.flowlayout.FlowRow
 import com.google.accompanist.flowlayout.SizeMode
@@ -36,45 +42,71 @@ import com.yape.menu.FoodIngredient
 import com.yape.menu.FoodItemAttribute
 import com.yape.menu.HeaderComponent
 import com.yape.menu.R
+import com.yape.menu.data.response.IngredientResponse
+import com.yape.menu.domain.TrendingFoodModel
 import com.yape.menu.ui.theme.gray50Percent
 import com.yape.menu.ui.theme.transparent
+import kotlinx.coroutines.flow.StateFlow
 
 
 @Composable
-fun FoodDetailScreen() {
+fun InitFoodDetailScreen(navHostController: NavHostController) {
+    val foodDetailViewModel: FoodDetailViewModel = hiltViewModel()
+    FoodDetailScreen(navHostController = navHostController, state = foodDetailViewModel.viewState)
+}
+
+@Composable
+private fun FoodDetailScreen(navHostController: NavHostController, state: StateFlow<FoodDetailUiState>) {
+
+    val state = state.collectAsState().value
+
     LazyColumn(modifier = Modifier.fillMaxSize()) {
-        item {
-            Box {
-                HeaderComponent(
-                    modifier = Modifier.zIndex(2f), title = "Details"
-                )
+        when {
+            state.trendingFood != null -> {
+                item {
 
-                Image(
-                    painter = painterResource(id = R.drawable.poke),
-                    contentDescription = null,
-                    contentScale = ContentScale.Crop,
-                    modifier = Modifier
-                        .height(360.dp)
-                        .zIndex(0f)
-                )
-
-                Box(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .zIndex(1f)
-                        .height(360.dp)
-                        .background(
-                            brush = Brush.verticalGradient(
-                                colors = listOf(gray50Percent, transparent)
-                            )
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(360.dp)
+                    ) {
+                        HeaderComponent(
+                            modifier = Modifier.zIndex(2f),
+                            title = "Details",
+                            navHostController = navHostController
                         )
-                )
+
+                        Image(
+                            painter = rememberAsyncImagePainter(
+                                state.trendingFood.image
+                            ),
+                            contentDescription = null,
+                            contentScale = ContentScale.Crop,
+                            modifier = Modifier
+
+                                .fillMaxSize()
+                                .zIndex(0f)
+                        )
+
+                        Box(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .zIndex(1f)
+                                .background(
+                                    brush = Brush.verticalGradient(
+                                        colors = listOf(gray50Percent, transparent)
+                                    )
+                                )
+                        )
+                    }
+                }
+
+                item { FoodDescription(trendingFood = state.trendingFood) }
+
+                item { FoodIngredientList(ingredientList = state.trendingFood.ingredientList) }
             }
         }
 
-        item { FoodDescription() }
-
-        item { FoodIngredientList() }
 
         item {
             Button(
@@ -96,7 +128,7 @@ fun FoodDetailScreen() {
 
 
 @Composable
-fun FoodDescription(modifier: Modifier = Modifier) {
+fun FoodDescription(modifier: Modifier = Modifier, trendingFood: TrendingFoodModel) {
     Column(
         modifier = modifier
             .fillMaxWidth()
@@ -104,14 +136,16 @@ fun FoodDescription(modifier: Modifier = Modifier) {
     ) {
         Row {
             Text(
-                text = "Baked Salmon",
+                text = trendingFood.name,
                 style = MaterialTheme.typography.titleSmall,
-                fontSize = 22.sp
+                fontSize = 22.sp,
+                overflow = TextOverflow.Ellipsis,
+                modifier = Modifier.width(200.dp),
             )
             Spacer(modifier = Modifier.weight(1f))
 
             Text(
-                text = "$30",
+                text = trendingFood.price,
                 style = MaterialTheme.typography.titleSmall,
                 fontSize = 22.sp
             )
@@ -126,7 +160,7 @@ fun FoodDescription(modifier: Modifier = Modifier) {
                 modifier = Modifier
                     .weight(1f),
                 icon = R.drawable.ic_rate,
-                description = "4.4 Rating",
+                description = "${trendingFood.rating} Rating",
                 type = FoodAttributeType.VERTICAL
             )
             Divider(
@@ -139,7 +173,7 @@ fun FoodDescription(modifier: Modifier = Modifier) {
                 modifier = Modifier
                     .weight(1f),
                 icon = R.drawable.ic_comment,
-                description = "400+ Reviews",
+                description = trendingFood.reviewers,
                 type = FoodAttributeType.VERTICAL
             )
             Divider(
@@ -153,13 +187,15 @@ fun FoodDescription(modifier: Modifier = Modifier) {
                 modifier = Modifier
                     .weight(1f),
                 icon = R.drawable.ic_calories,
-                description = "100-300 Calories",
+                description = trendingFood.calories,
                 type = FoodAttributeType.VERTICAL
             )
         }
 
         Text(
-            text = "Baked salmon is a delicious and healthy dish that is perfect for a quick and easy weeknight dinner. The salmon fillets are seasoned with... View More ",
+            text = trendingFood.description,
+            maxLines = 4,
+            overflow = TextOverflow.Ellipsis,
             style = MaterialTheme.typography.bodySmall,
             fontSize = 14.sp
         )
@@ -167,7 +203,7 @@ fun FoodDescription(modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun FoodIngredientList() {
+fun FoodIngredientList(ingredientList: List<IngredientResponse>) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier.padding(horizontal = 16.dp)
@@ -192,8 +228,8 @@ fun FoodIngredientList() {
         mainAxisAlignment = FlowMainAxisAlignment.SpaceBetween,
         modifier = Modifier.padding(16.dp)
     ) {
-        for (i in 1..26) {
-            FoodIngredient()
+        ingredientList.forEach {
+            FoodIngredient(name = it.name, calories = it.calories)
         }
     }
 }
@@ -203,6 +239,6 @@ fun FoodIngredientList() {
 @Composable
 fun FoodDetailScreenPreview() {
     MaterialTheme {
-        FoodDetailScreen()
+        //FoodDetailScreen()
     }
 }

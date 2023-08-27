@@ -10,15 +10,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.res.painterResource
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.navArgument
 import com.yape.menu.R
-import com.yape.menu.screen.FoodDetailScreen
 import com.yape.menu.screen.OrderScreen
 import com.yape.menu.screen.ProfileScreen
 import com.yape.menu.screen.SavedScreen
 import com.yape.menu.screen.StatsScreen
+import com.yape.menu.screen.food_detail.InitFoodDetailScreen
 import com.yape.menu.screen.home.InitHomeScreen
 
 
@@ -30,7 +32,14 @@ fun Navigation(navController: NavHostController) {
         composable(route = BottomBarNav.StatsScreen.route) { StatsScreen() }
         composable(route = BottomBarNav.SavedScreen.route) { SavedScreen() }
         composable(route = BottomBarNav.ProfileScreen.route) { ProfileScreen() }
-        composable(route = BottomBarNav.FoodDetailScreen.route) { FoodDetailScreen() }
+        composable(
+            route = BottomBarNav.FoodDetailScreen.route,
+            arguments = listOf(
+                navArgument("food") {
+                    type = NavType.StringType
+                }
+            )
+        ) { InitFoodDetailScreen(navController) }
     }
 }
 

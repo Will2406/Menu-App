@@ -1,6 +1,8 @@
 package com.yape.menu.navigation
 
+import android.net.Uri
 import com.yape.menu.R
+import com.yape.menu.domain.TrendingFoodModel
 
 sealed class BottomBarNav(
     val route: String,
@@ -39,7 +41,12 @@ sealed class BottomBarNav(
     )
 
     object FoodDetailScreen : BottomBarNav(
-        route = "FoodDetail",
+        route = "FoodDetail/{food}",
         title = "FoodDetail"
-    )
+    ) {
+        fun createRoot(food: String) = route.replace(
+            oldValue = "{food}",
+            newValue = Uri.encode(food)
+        )
+    }
 }

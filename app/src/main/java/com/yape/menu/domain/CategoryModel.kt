@@ -1,4 +1,4 @@
-package com.yape.menu.data
+package com.yape.menu.domain
 
 import com.yape.menu.data.response.CategoryResponse
 

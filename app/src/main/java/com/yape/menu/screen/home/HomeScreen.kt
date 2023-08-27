@@ -29,14 +29,15 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.flowlayout.FlowMainAxisAlignment
 import com.google.accompanist.flowlayout.FlowRow
 import com.google.accompanist.flowlayout.SizeMode
 import com.yape.menu.CategoryMainItem
 import com.yape.menu.FoodMainItem
-import com.yape.menu.data.CategoryModel
+import com.yape.menu.domain.CategoryModel
+import com.yape.menu.domain.TrendingFoodModel
 import com.yape.menu.navigation.BottomBarNav
+import com.yape.menu.toJson
 import kotlinx.coroutines.flow.StateFlow
 
 @Composable
@@ -48,6 +49,7 @@ fun InitHomeScreen(navHostController: NavHostController) {
 @Composable
 private fun HomeScreen(navHostController: NavHostController, state: StateFlow<HomeUiState>) {
     val state = state.collectAsState().value
+
     LazyColumn(
         modifier = Modifier.fillMaxSize()
     ) {
@@ -61,21 +63,17 @@ private fun HomeScreen(navHostController: NavHostController, state: StateFlow<Ho
         }
         when {
             state.loading -> {}
-            else -> {
-                if (state.categoryList.isNotEmpty()) {
-                    item { CategorySection(state.categoryList) }
-                }
+            else ->{
+                if(state.categoryList.isNotEmpty()) item { CategorySection(state.categoryList) }
+                if(state.foodTrendingList.isNotEmpty()) item { FoodSection(navHostController, state.foodTrendingList) }
             }
+
         }
-
-
-        item { FoodSection(navHostController) }
-
     }
 }
 
 @Composable
-private fun FoodSection(navHostController: NavHostController) {
+private fun FoodSection(navHostController: NavHostController, foodTrendingList: List<TrendingFoodModel>) {
 
     TitleSection(
         title = "Trending Now",
@@ -90,12 +88,15 @@ private fun FoodSection(navHostController: NavHostController) {
         mainAxisAlignment = FlowMainAxisAlignment.SpaceBetween,
         modifier = Modifier.padding(horizontal = 8.dp)
     ) {
-        for (i in 1..10) {
-            FoodMainItem(modifier = Modifier
-                .width(itemSize)
-                .clickable {
-                    navHostController.navigate(BottomBarNav.FoodDetailScreen.route)
-                })
+        foodTrendingList.forEach {
+            FoodMainItem(
+                modifier = Modifier
+                    .width(itemSize)
+                    .clickable {
+                       navHostController.navigate(BottomBarNav.FoodDetailScreen.createRoot(it.toJson()))
+                    },
+                foodTrending = it
+            )
         }
     }
 

@@ -1,5 +1,7 @@
-package com.yape.menu.data
+package com.yape.menu.data.repository
 
+import com.yape.menu.domain.CategoryModel
+import com.yape.menu.domain.convertToModel
 import com.yape.menu.data.datasource.CategoryRemoteDataSource
 import com.yape.menu.data.generics.DataResult
 import kotlinx.coroutines.flow.Flow

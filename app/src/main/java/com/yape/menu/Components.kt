@@ -24,10 +24,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.navigation.NavHostController
 
 
 @Composable
-fun HeaderComponent(modifier: Modifier = Modifier, title: String) {
+fun HeaderComponent(navHostController: NavHostController, modifier: Modifier = Modifier, title: String) {
     ConstraintLayout(
         modifier = modifier
             .fillMaxWidth()
@@ -36,7 +37,7 @@ fun HeaderComponent(modifier: Modifier = Modifier, title: String) {
         val (backButtonRef, titleRef, saveButtonRef) = createRefs()
 
         IconButton(
-            onClick = { },
+            onClick = { navHostController.popBackStack() },
             modifier = Modifier
                 .clip(CircleShape)
                 .background(MaterialTheme.colorScheme.surface)
@@ -89,6 +90,6 @@ fun HeaderComponent(modifier: Modifier = Modifier, title: String) {
 @Composable
 fun HeaderComponentPreview() {
     MaterialTheme {
-        HeaderComponent(title = "Details")
+        //HeaderComponent(title = "Details")
     }
 }
