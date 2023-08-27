@@ -1,8 +1,5 @@
 package com.yape.menu.navigation
 
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.ui.graphics.vector.ImageVector
 import com.yape.menu.R
 
 sealed class BottomBarNav(

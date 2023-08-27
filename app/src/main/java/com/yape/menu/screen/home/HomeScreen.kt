@@ -1,4 +1,4 @@
-package com.yape.menu.screen
+package com.yape.menu.screen.home
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -18,6 +18,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -26,6 +27,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.flowlayout.FlowMainAxisAlignment
@@ -33,11 +35,19 @@ import com.google.accompanist.flowlayout.FlowRow
 import com.google.accompanist.flowlayout.SizeMode
 import com.yape.menu.CategoryMainItem
 import com.yape.menu.FoodMainItem
+import com.yape.menu.data.CategoryModel
 import com.yape.menu.navigation.BottomBarNav
-
+import kotlinx.coroutines.flow.StateFlow
 
 @Composable
-fun HomeScreen(navHostController: NavHostController) {
+fun InitHomeScreen(navHostController: NavHostController) {
+    val homeViewModel: HomeViewModel = hiltViewModel()
+    HomeScreen(navHostController = navHostController, state = homeViewModel.viewState)
+}
+
+@Composable
+private fun HomeScreen(navHostController: NavHostController, state: StateFlow<HomeUiState>) {
+    val state = state.collectAsState().value
     LazyColumn(
         modifier = Modifier.fillMaxSize()
     ) {
@@ -49,8 +59,15 @@ fun HomeScreen(navHostController: NavHostController) {
                 modifier = Modifier.padding(16.dp)
             )
         }
+        when {
+            state.loading -> {}
+            else -> {
+                if (state.categoryList.isNotEmpty()) {
+                    item { CategorySection(state.categoryList) }
+                }
+            }
+        }
 
-        item { CategorySection() }
 
         item { FoodSection(navHostController) }
 
@@ -58,7 +75,7 @@ fun HomeScreen(navHostController: NavHostController) {
 }
 
 @Composable
-fun FoodSection(navHostController: NavHostController) {
+private fun FoodSection(navHostController: NavHostController) {
 
     TitleSection(
         title = "Trending Now",
@@ -86,7 +103,7 @@ fun FoodSection(navHostController: NavHostController) {
 
 
 @Composable
-fun CategorySection() {
+private fun CategorySection(categoryList: List<CategoryModel>) {
     Column {
         TitleSection(
             title = "Browse by Category",
@@ -96,11 +113,15 @@ fun CategorySection() {
         LazyRow(
             contentPadding = PaddingValues(start = 4.dp, end = 16.dp),
         ) {
-            repeat(8) {
+            categoryList.forEach {
                 item {
-                    CategoryMainItem(text = "Salad")
+                    CategoryMainItem(
+                        imageUrl = it.image,
+                        title = it.name
+                    )
                 }
             }
+
         }
     }
 }
@@ -146,6 +167,6 @@ fun TitleSection(modifier: Modifier = Modifier, title: String, onClick: () -> Un
 @Composable
 fun HomeScreenPreview() {
     MaterialTheme {
-        HomeScreen(navHostController = rememberNavController())
+        // HomeScreen(navHostController = rememberNavController())
     }
 }

@@ -1,8 +1,6 @@
 package com.yape.menu.navigation
 
 
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Home
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -17,17 +15,17 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.yape.menu.R
 import com.yape.menu.screen.FoodDetailScreen
-import com.yape.menu.screen.HomeScreen
 import com.yape.menu.screen.OrderScreen
 import com.yape.menu.screen.ProfileScreen
 import com.yape.menu.screen.SavedScreen
 import com.yape.menu.screen.StatsScreen
+import com.yape.menu.screen.home.InitHomeScreen
 
 
 @Composable
 fun Navigation(navController: NavHostController) {
     NavHost(navController = navController, startDestination = BottomBarNav.HomeScreen.route) {
-        composable(route = BottomBarNav.HomeScreen.route) { HomeScreen(navController) }
+        composable(route = BottomBarNav.HomeScreen.route) { InitHomeScreen(navController) }
         composable(route = BottomBarNav.OrderScreen.route) { OrderScreen() }
         composable(route = BottomBarNav.StatsScreen.route) { StatsScreen() }
         composable(route = BottomBarNav.SavedScreen.route) { SavedScreen() }

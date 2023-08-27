@@ -11,7 +11,9 @@ import androidx.navigation.compose.rememberNavController
 import com.yape.menu.navigation.BottomNavigationBar
 import com.yape.menu.navigation.Navigation
 import com.yape.menu.ui.theme.MenuTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,6 +24,7 @@ class MainActivity : ComponentActivity() {
                 Scaffold(
                     bottomBar = { BottomNavigationBar(navController = navController) },
                     ) { padding ->
+
                     Column(
                         modifier = Modifier
                             .padding(padding)

@@ -2,6 +2,7 @@ package com.yape.menu
 
 import android.content.ClipData.Item
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -15,33 +16,36 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.compose.rememberAsyncImagePainter
 
 @Composable
-fun CategoryMainItem(text: String) {
+fun CategoryMainItem(title: String, imageUrl: String) {
     Box(
         modifier = Modifier
             .padding(start = 12.dp, top = 12.dp, bottom = 12.dp)
             .width(100.dp)
-            .height(120.dp)
+            .height(150.dp)
     ) {
         Column {
             Image(
-                painter = painterResource(id = R.drawable.poke),
-                contentScale = ContentScale.Crop,
+                painter = rememberAsyncImagePainter(imageUrl, contentScale = ContentScale.Crop),
                 contentDescription = null,
                 modifier = Modifier
-                    .height(80.dp)
                     .clip(RoundedCornerShape(10.dp))
+                    .fillMaxWidth()
+                    .height(100.dp)
+
             )
 
             Text(
-                text = text,
+                text = title,
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(top = 6.dp),
@@ -57,6 +61,9 @@ fun CategoryMainItem(text: String) {
 @Composable
 fun CategoryMainItemPreview() {
     MaterialTheme {
-        CategoryMainItem(text = "Salad")
+        CategoryMainItem(
+            title = "Salad",
+            imageUrl = "https://firebasestorage.googleapis.com/v0/b/chatapp-95bb6.appspot.com/o/Group%201.png?alt=media&token=0a322d69-3c27-45b7-ab1f-c32918ec17e9"
+        )
     }
 }
