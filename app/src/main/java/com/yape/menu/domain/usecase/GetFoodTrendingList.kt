@@ -1,7 +1,7 @@
-package com.yape.menu.domain
+package com.yape.menu.domain.usecase
 
-import com.yape.menu.data.repository.CategoryRepository
 import com.yape.menu.data.repository.FoodRepository
+import com.yape.menu.domain.model.TrendingFoodModel
 import com.yape.menu.domain.util.UseCase
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject

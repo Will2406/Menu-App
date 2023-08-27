@@ -1,7 +1,6 @@
 package com.yape.menu.screen.food_detail
 
-import com.yape.menu.domain.CategoryModel
-import com.yape.menu.domain.TrendingFoodModel
+import com.yape.menu.domain.model.TrendingFoodModel
 
 data class FoodDetailUiState(
     val loading: Boolean = false,

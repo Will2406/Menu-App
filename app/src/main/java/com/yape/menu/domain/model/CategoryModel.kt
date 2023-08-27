@@ -1,6 +1,6 @@
-package com.yape.menu.domain
+package com.yape.menu.domain.model
 
-import com.yape.menu.data.response.CategoryResponse
+import com.yape.menu.data.core.response.CategoryResponse
 
 data class CategoryModel(var id: String, var name: String, var image: String)
 

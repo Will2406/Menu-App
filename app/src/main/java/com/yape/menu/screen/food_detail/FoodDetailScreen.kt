@@ -18,14 +18,12 @@ import androidx.compose.material3.Divider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.State
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -42,8 +40,8 @@ import com.yape.menu.FoodIngredient
 import com.yape.menu.FoodItemAttribute
 import com.yape.menu.HeaderComponent
 import com.yape.menu.R
-import com.yape.menu.data.response.IngredientResponse
-import com.yape.menu.domain.TrendingFoodModel
+import com.yape.menu.data.core.response.IngredientResponse
+import com.yape.menu.domain.model.TrendingFoodModel
 import com.yape.menu.navigation.BottomBarNav
 import com.yape.menu.ui.theme.gray50Percent
 import com.yape.menu.ui.theme.transparent

@@ -2,7 +2,6 @@ package com.yape.menu.navigation
 
 import android.net.Uri
 import com.yape.menu.R
-import com.yape.menu.domain.TrendingFoodModel
 
 sealed class BottomBarNav(
     val route: String,

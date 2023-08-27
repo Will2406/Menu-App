@@ -1,7 +1,7 @@
-package com.yape.menu.domain
+package com.yape.menu.domain.model
 
-import com.yape.menu.data.response.IngredientResponse
-import com.yape.menu.data.response.TrendingFoodResponse
+import com.yape.menu.data.core.response.IngredientResponse
+import com.yape.menu.data.core.response.TrendingFoodResponse
 
 data class TrendingFoodModel(
     var id: String,

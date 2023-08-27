@@ -1,4 +1,4 @@
-package com.yape.menu.data.generics
+package com.yape.menu.data.core.generics
 
 import android.util.Log
 import com.squareup.moshi.Json
@@ -27,12 +27,11 @@ suspend fun <T : Any> safeApiCall(
                     result.errorBody()?.stringSuspending()?.let { errorAdapter.fromJson(it) }
                 DataError.HttpError(
                     code = result.code(),
-                    message = httpError?.message ?: httpError?.errors?.get(0),
+                    message = httpError?.message,
                     body = result.errorBody()?.stringSuspending()
                 )
             }
         } catch (ex: Exception) {
-            Log.d("SAFE API CALL", ex.message.toString())
             DataError.HttpError(
                 code = 0,
                 message = ex.message,
@@ -47,7 +46,6 @@ internal suspend fun ResponseBody.stringSuspending() =
     withContext(Dispatchers.IO) { string() }
 
 data class HttpErrorResponse(
-    @field:Json(name = "status") val status: Boolean?,
-    @field:Json(name = "error") val errors: List<String>?,
+    @field:Json(name = "errors") val errors: List<String>?,
     @field:Json(name = "message") val message: String?
 )

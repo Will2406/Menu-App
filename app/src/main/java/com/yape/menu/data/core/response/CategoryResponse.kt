@@ -1,4 +1,4 @@
-package com.yape.menu.data.response
+package com.yape.menu.data.core.response
 
 import com.squareup.moshi.Json
 

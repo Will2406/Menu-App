@@ -1,4 +1,4 @@
-package com.yape.menu.data.generics
+package com.yape.menu.data.core.generics
 
 sealed class DataResult<out T> {
 

@@ -1,9 +1,9 @@
-package com.yape.menu.data.datasource
+package com.yape.menu.data.datasource.food
 
-import com.yape.menu.data.MenuService
-import com.yape.menu.data.generics.DataResult
-import com.yape.menu.data.generics.safeApiCall
-import com.yape.menu.data.response.TrendingFoodListResponse
+import com.yape.menu.data.core.MenuService
+import com.yape.menu.data.core.generics.DataResult
+import com.yape.menu.data.core.generics.safeApiCall
+import com.yape.menu.data.core.response.TrendingFoodListResponse
 import javax.inject.Inject
 
 class FoodRemoteDataSourceImpl @Inject constructor(private val api: MenuService) : FoodRemoteDataSource {

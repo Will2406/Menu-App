@@ -2,8 +2,8 @@ package com.yape.menu.screen.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.yape.menu.domain.GetCategoryList
-import com.yape.menu.domain.GetFoodTrendingList
+import com.yape.menu.domain.usecase.GetCategoryList
+import com.yape.menu.domain.usecase.GetFoodTrendingList
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

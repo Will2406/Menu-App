@@ -15,3 +15,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "menu"
 include(":app")
+include(":buildScr")

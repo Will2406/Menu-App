@@ -34,8 +34,8 @@ import com.google.accompanist.flowlayout.FlowRow
 import com.google.accompanist.flowlayout.SizeMode
 import com.yape.menu.CategoryMainItem
 import com.yape.menu.FoodMainItem
-import com.yape.menu.domain.CategoryModel
-import com.yape.menu.domain.TrendingFoodModel
+import com.yape.menu.domain.model.CategoryModel
+import com.yape.menu.domain.model.TrendingFoodModel
 import com.yape.menu.navigation.BottomBarNav
 import com.yape.menu.toJson
 import kotlinx.coroutines.flow.StateFlow
