@@ -1,6 +1,7 @@
 package com.yape.menu.data.core
 
 import com.yape.menu.data.core.response.CategoryListResponse
+import com.yape.menu.data.core.response.FoodListResponse
 import com.yape.menu.data.core.response.TrendingFoodListResponse
 import retrofit2.Response
 import retrofit2.http.GET
@@ -12,4 +13,7 @@ interface MenuService {
 
     @GET("trending")
     suspend fun getTrendingFood(): Response<TrendingFoodListResponse>
+
+    @GET("food")
+    suspend fun getAllFood(): Response<FoodListResponse>
 }

@@ -4,7 +4,7 @@ import android.net.Uri
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.yape.menu.domain.model.TrendingFoodModel
+import com.yape.menu.domain.model.FoodModel
 import com.yape.menu.fromJson
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -25,7 +25,7 @@ class FoodDetailViewModel @Inject constructor(
     init {
         viewModelScope.launch {
             val argument = Uri.decode(savedStateHandle.get<String>("food").orEmpty())
-            val food = argument.fromJson<TrendingFoodModel>()
+            val food = argument.fromJson<FoodModel>()
             _viewState.update {_viewState.value.copy(trendingFood = food)}
         }
     }

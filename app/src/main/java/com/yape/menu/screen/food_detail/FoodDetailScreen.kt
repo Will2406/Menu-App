@@ -35,13 +35,13 @@ import coil.compose.rememberAsyncImagePainter
 import com.google.accompanist.flowlayout.FlowMainAxisAlignment
 import com.google.accompanist.flowlayout.FlowRow
 import com.google.accompanist.flowlayout.SizeMode
-import com.yape.menu.FoodAttributeType
 import com.yape.menu.FoodIngredient
 import com.yape.menu.FoodItemAttribute
 import com.yape.menu.HeaderComponent
+import com.yape.menu.OrientationType
 import com.yape.menu.R
 import com.yape.menu.data.core.response.IngredientResponse
-import com.yape.menu.domain.model.TrendingFoodModel
+import com.yape.menu.domain.model.FoodModel
 import com.yape.menu.navigation.BottomBarNav
 import com.yape.menu.ui.theme.gray50Percent
 import com.yape.menu.ui.theme.transparent
@@ -127,7 +127,7 @@ private fun FoodDetailScreen(navHostController: NavHostController, state: StateF
 
 
 @Composable
-fun FoodDescription(modifier: Modifier = Modifier, trendingFood: TrendingFoodModel) {
+fun FoodDescription(modifier: Modifier = Modifier, trendingFood: FoodModel) {
     Column(
         modifier = modifier
             .fillMaxWidth()
@@ -160,7 +160,7 @@ fun FoodDescription(modifier: Modifier = Modifier, trendingFood: TrendingFoodMod
                     .weight(1f),
                 icon = R.drawable.ic_rate,
                 description = "${trendingFood.rating} Rating",
-                type = FoodAttributeType.VERTICAL
+                type = OrientationType.VERTICAL
             )
             Divider(
                 color = Color.Gray,
@@ -173,7 +173,7 @@ fun FoodDescription(modifier: Modifier = Modifier, trendingFood: TrendingFoodMod
                     .weight(1f),
                 icon = R.drawable.ic_comment,
                 description = trendingFood.reviewers,
-                type = FoodAttributeType.VERTICAL
+                type = OrientationType.VERTICAL
             )
             Divider(
                 color = Color.Gray,
@@ -187,7 +187,7 @@ fun FoodDescription(modifier: Modifier = Modifier, trendingFood: TrendingFoodMod
                     .weight(1f),
                 icon = R.drawable.ic_calories,
                 description = trendingFood.calories,
-                type = FoodAttributeType.VERTICAL
+                type = OrientationType.VERTICAL
             )
         }
 

@@ -29,11 +29,11 @@ import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import coil.compose.rememberAsyncImagePainter
-import com.yape.menu.domain.model.TrendingFoodModel
+import com.yape.menu.domain.model.FoodModel
 
 
 @Composable
-fun FoodMainItem(modifier: Modifier = Modifier, foodTrending: TrendingFoodModel) {
+fun FoodMainItem(modifier: Modifier = Modifier, foodTrending: FoodModel) {
     Box(
         modifier = modifier
             .fillMaxWidth()
@@ -90,13 +90,13 @@ fun FoodMainItem(modifier: Modifier = Modifier, foodTrending: TrendingFoodModel)
             FoodItemAttribute(
                 icon = R.drawable.ic_comment,
                 description = foodTrending.reviewers,
-                type = FoodAttributeType.HORIZONTAL
+                type = OrientationType.HORIZONTAL
             )
 
             FoodItemAttribute(
                 icon = R.drawable.ic_calories,
                 description = foodTrending.calories,
-                type = FoodAttributeType.HORIZONTAL
+                type = OrientationType.HORIZONTAL
             )
 
 
@@ -157,13 +157,13 @@ fun FoodStatsItem(modifier: Modifier = Modifier) {
                 FoodItemAttribute(
                     icon = R.drawable.ic_comment,
                     description = "500+ reviews",
-                    type = FoodAttributeType.HORIZONTAL
+                    type = OrientationType.HORIZONTAL
                 )
 
                 FoodItemAttribute(
                     icon = R.drawable.ic_calories,
                     description = "100-300 calories",
-                    type = FoodAttributeType.HORIZONTAL
+                    type = OrientationType.HORIZONTAL
                 )
             }
         }
@@ -171,13 +171,13 @@ fun FoodStatsItem(modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun FoodItemAttribute(modifier: Modifier = Modifier, icon: Int, description: String, type: FoodAttributeType) {
+fun FoodItemAttribute(modifier: Modifier = Modifier, icon: Int, description: String, type: OrientationType) {
     when (type) {
-        FoodAttributeType.HORIZONTAL -> {
+        OrientationType.HORIZONTAL -> {
             FoodItemAttributeHorizontal(modifier = modifier, icon = icon, description = description)
         }
 
-        FoodAttributeType.VERTICAL -> {
+        OrientationType.VERTICAL -> {
             FoodItemAttributeVertical(modifier = modifier, icon = icon, description = description)
         }
     }
@@ -251,7 +251,7 @@ fun FoodIngredient(name: String, calories: String) {
     }
 }
 
-enum class FoodAttributeType {
+enum class OrientationType {
     HORIZONTAL,
     VERTICAL
 }
@@ -272,13 +272,13 @@ fun FoodMainAttributePreview() {
             FoodItemAttribute(
                 icon = R.drawable.ic_comment,
                 description = "500+ reviews",
-                type = FoodAttributeType.HORIZONTAL
+                type = OrientationType.HORIZONTAL
             )
 
             FoodItemAttribute(
                 icon = R.drawable.ic_calories,
                 description = "100-300 Calories",
-                type = FoodAttributeType.VERTICAL
+                type = OrientationType.VERTICAL
             )
         }
     }

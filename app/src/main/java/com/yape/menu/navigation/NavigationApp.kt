@@ -17,19 +17,20 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.navArgument
 import com.yape.menu.R
 import com.yape.menu.screen.FoodMapScreen
-import com.yape.menu.screen.OrderScreen
+import com.yape.menu.screen.search.SearchScreen
 import com.yape.menu.screen.ProfileScreen
 import com.yape.menu.screen.SavedScreen
 import com.yape.menu.screen.StatsScreen
 import com.yape.menu.screen.food_detail.InitFoodDetailScreen
 import com.yape.menu.screen.home.InitHomeScreen
+import com.yape.menu.screen.search.InitSearchScreen
 
 
 @Composable
 fun Navigation(navController: NavHostController) {
     NavHost(navController = navController, startDestination = BottomBarNav.HomeScreen.route) {
         composable(route = BottomBarNav.HomeScreen.route) { InitHomeScreen(navController) }
-        composable(route = BottomBarNav.OrderScreen.route) { OrderScreen() }
+        composable(route = BottomBarNav.SearchScreen.route) { InitSearchScreen(navController) }
         composable(route = BottomBarNav.StatsScreen.route) { StatsScreen() }
         composable(route = BottomBarNav.SavedScreen.route) { SavedScreen() }
         composable(route = BottomBarNav.ProfileScreen.route) { ProfileScreen() }
@@ -49,7 +50,7 @@ fun Navigation(navController: NavHostController) {
 fun BottomNavigationBar(navController: NavHostController) {
     val listItems = listOf(
         BottomBarNav.HomeScreen,
-        BottomBarNav.OrderScreen,
+        BottomBarNav.SearchScreen,
         BottomBarNav.StatsScreen,
         BottomBarNav.SavedScreen,
         BottomBarNav.ProfileScreen

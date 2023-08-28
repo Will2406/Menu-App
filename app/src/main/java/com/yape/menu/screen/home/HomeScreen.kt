@@ -35,7 +35,7 @@ import com.google.accompanist.flowlayout.SizeMode
 import com.yape.menu.CategoryMainItem
 import com.yape.menu.FoodMainItem
 import com.yape.menu.domain.model.CategoryModel
-import com.yape.menu.domain.model.TrendingFoodModel
+import com.yape.menu.domain.model.FoodModel
 import com.yape.menu.navigation.BottomBarNav
 import com.yape.menu.toJson
 import kotlinx.coroutines.flow.StateFlow
@@ -73,7 +73,7 @@ private fun HomeScreen(navHostController: NavHostController, state: StateFlow<Ho
 }
 
 @Composable
-private fun FoodSection(navHostController: NavHostController, foodTrendingList: List<TrendingFoodModel>) {
+private fun FoodSection(navHostController: NavHostController, foodTrendingList: List<FoodModel>) {
 
     TitleSection(
         title = "Trending Now",

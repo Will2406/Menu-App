@@ -1,9 +1,9 @@
 package com.yape.menu.domain.model
 
+import com.yape.menu.data.core.response.FoodResponse
 import com.yape.menu.data.core.response.IngredientResponse
-import com.yape.menu.data.core.response.TrendingFoodResponse
 
-data class TrendingFoodModel(
+data class FoodModel(
     var id: String,
     var name: String,
     var rating: String,
@@ -16,7 +16,7 @@ data class TrendingFoodModel(
 )
 
 
-fun TrendingFoodResponse.convertToModel() = TrendingFoodModel(
+fun FoodResponse.convertToModel() = FoodModel(
     id = id,
     name = name,
     image = imageUrl,
@@ -28,4 +28,4 @@ fun TrendingFoodResponse.convertToModel() = TrendingFoodModel(
     ingredientList = ingredientList
 )
 
-fun List<TrendingFoodResponse>.convertToModel() = map(TrendingFoodResponse::convertToModel)
+fun List<FoodResponse>.convertToModel() = map(FoodResponse::convertToModel)

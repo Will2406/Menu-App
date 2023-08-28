@@ -6,11 +6,11 @@ import com.yape.menu.domain.util.UseCase
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-class GetFoodTrendingList @Inject constructor(
+class GetAllFoodList @Inject constructor(
     private val repository: FoodRepository
 ) : UseCase.WithoutParams<Flow<List<FoodModel>>> {
 
     override suspend fun invoke(): Flow<List<FoodModel>> {
-        return repository.getFoodTrendingList()
+        return repository.getAllFoodList()
     }
 }

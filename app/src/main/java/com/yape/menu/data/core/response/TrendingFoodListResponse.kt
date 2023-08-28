@@ -4,10 +4,10 @@ import com.squareup.moshi.Json
 
 data class TrendingFoodListResponse(
     @field:Json(name = "message") val message: String? = "",
-    @field:Json(name = "data") val trendingFoodList: List<TrendingFoodResponse>,
+    @field:Json(name = "data") val trendingFoodList: List<FoodResponse>,
 )
 
-data class TrendingFoodResponse(
+data class FoodResponse(
     @field:Json(name = "id") val id: String,
     @field:Json(name = "name") val name: String,
     @field:Json(name = "rating") val rating: String,

@@ -15,9 +15,9 @@ sealed class BottomBarNav(
         icon = R.drawable.ic_home
     )
 
-    object OrderScreen : BottomBarNav(
-        route = "Order",
-        title = "Order",
+    object SearchScreen : BottomBarNav(
+        route = "Search",
+        title = "Search",
         icon = R.drawable.ic_order
     )
 

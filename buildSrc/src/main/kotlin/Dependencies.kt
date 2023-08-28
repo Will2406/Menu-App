@@ -14,7 +14,7 @@ object Dependencies {
         const val Manifest = "androidx.compose.ui:ui-test-manifest"
         const val Activity = "androidx.activity:activity-compose:1.7.2"
         const val Material = "androidx.compose.material:material:1.5.0"
-        const val Material3 = "androidx.compose.material3:material3"
+        const val Material3 = "androidx.compose.material3:material3:1.1.1"
     }
 
     object AndroidX {
