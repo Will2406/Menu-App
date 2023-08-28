@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -19,6 +20,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -58,8 +60,7 @@ fun FoodMainItem(modifier: Modifier = Modifier, foodTrending: FoodModel) {
                         .background(color = Color.White, shape = RoundedCornerShape(12.dp))
                 ) {
                     Row(
-                        modifier = Modifier.padding(horizontal = 4.dp, vertical = 2.dp),
-                        verticalAlignment = Alignment.CenterVertically
+                        modifier = Modifier.padding(horizontal = 4.dp, vertical = 2.dp), verticalAlignment = Alignment.CenterVertically
                     ) {
                         Icon(
                             painter = painterResource(id = R.drawable.ic_rate),
@@ -88,15 +89,11 @@ fun FoodMainItem(modifier: Modifier = Modifier, foodTrending: FoodModel) {
             )
 
             FoodItemAttribute(
-                icon = R.drawable.ic_comment,
-                description = foodTrending.reviewers,
-                type = OrientationType.HORIZONTAL
+                icon = R.drawable.ic_comment, description = foodTrending.reviewers, type = OrientationType.HORIZONTAL
             )
 
             FoodItemAttribute(
-                icon = R.drawable.ic_calories,
-                description = foodTrending.calories,
-                type = OrientationType.HORIZONTAL
+                icon = R.drawable.ic_calories, description = foodTrending.calories, type = OrientationType.HORIZONTAL
             )
 
 
@@ -120,8 +117,7 @@ fun FoodStatsItem(modifier: Modifier = Modifier) {
             val startGuideline = createGuidelineFromStart(0.45f)
             val (imageRef, descriptionRef) = createRefs()
 
-            Image(
-                painter = painterResource(id = R.drawable.poke),
+            Image(painter = painterResource(id = R.drawable.poke),
                 contentScale = ContentScale.Crop,
                 contentDescription = null,
                 modifier = Modifier
@@ -133,37 +129,27 @@ fun FoodStatsItem(modifier: Modifier = Modifier) {
                         bottom.linkTo(parent.bottom)
                         end.linkTo(startGuideline)
                         width = Dimension.fillToConstraints
-                    }
-            )
+                    })
 
-            Column(
-                modifier = Modifier
-                    .padding(start = 16.dp, end = 12.dp)
-                    .constrainAs(descriptionRef) {
-                        start.linkTo(startGuideline)
-                        top.linkTo(parent.top)
-                        bottom.linkTo(parent.bottom)
-                        end.linkTo(parent.end)
-                        width = Dimension.fillToConstraints
-                    }
-            ) {
+            Column(modifier = Modifier
+                .padding(start = 16.dp, end = 12.dp)
+                .constrainAs(descriptionRef) {
+                    start.linkTo(startGuideline)
+                    top.linkTo(parent.top)
+                    bottom.linkTo(parent.bottom)
+                    end.linkTo(parent.end)
+                    width = Dimension.fillToConstraints
+                }) {
                 Text(
-                    text = "Garden Salad",
-                    modifier = Modifier.padding(vertical = 4.dp),
-                    fontSize = 20.sp,
-                    style = MaterialTheme.typography.titleSmall
+                    text = "Garden Salad", modifier = Modifier.padding(vertical = 4.dp), fontSize = 20.sp, style = MaterialTheme.typography.titleSmall
                 )
 
                 FoodItemAttribute(
-                    icon = R.drawable.ic_comment,
-                    description = "500+ reviews",
-                    type = OrientationType.HORIZONTAL
+                    icon = R.drawable.ic_comment, description = "500+ reviews", type = OrientationType.HORIZONTAL
                 )
 
                 FoodItemAttribute(
-                    icon = R.drawable.ic_calories,
-                    description = "100-300 calories",
-                    type = OrientationType.HORIZONTAL
+                    icon = R.drawable.ic_calories, description = "100-300 calories", type = OrientationType.HORIZONTAL
                 )
             }
         }
@@ -188,15 +174,10 @@ fun FoodItemAttribute(modifier: Modifier = Modifier, icon: Int, description: Str
 private fun FoodItemAttributeHorizontal(modifier: Modifier = Modifier, icon: Int, description: String) {
     Row(verticalAlignment = Alignment.CenterVertically) {
         Image(
-            painter = painterResource(id = icon),
-            contentDescription = null,
-            modifier = Modifier.height(16.dp)
+            painter = painterResource(id = icon), contentDescription = null, modifier = Modifier.height(16.dp)
         )
         Text(
-            text = description,
-            modifier = Modifier.padding(start = 4.dp),
-            fontSize = 18.sp,
-            style = MaterialTheme.typography.bodySmall
+            text = description, modifier = Modifier.padding(start = 4.dp), fontSize = 18.sp, style = MaterialTheme.typography.bodySmall
         )
     }
 }
@@ -204,14 +185,10 @@ private fun FoodItemAttributeHorizontal(modifier: Modifier = Modifier, icon: Int
 @Composable
 private fun FoodItemAttributeVertical(modifier: Modifier = Modifier, icon: Int, description: String) {
     Row(
-        modifier = modifier.fillMaxWidth(),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.Center
+        modifier = modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Center
     ) {
         Image(
-            painter = painterResource(id = icon),
-            contentDescription = null,
-            modifier = Modifier.height(16.dp)
+            painter = painterResource(id = icon), contentDescription = null, modifier = Modifier.height(16.dp)
         )
         Column(modifier = Modifier.padding(start = 4.dp)) {
             Text(
@@ -238,29 +215,78 @@ fun FoodIngredient(name: String, calories: String) {
             .height(32.dp)
     ) {
         Text(
-            text = name,
-            fontSize = 14.sp,
-            style = MaterialTheme.typography.displayMedium
+            text = name, fontSize = 14.sp, style = MaterialTheme.typography.displayMedium
         )
         Spacer(modifier = Modifier.weight(1f))
         Text(
-            text = calories,
-            fontSize = 14.sp,
-            style = MaterialTheme.typography.displayMedium
+            text = calories, fontSize = 14.sp, style = MaterialTheme.typography.displayMedium
         )
     }
 }
 
 enum class OrientationType {
-    HORIZONTAL,
-    VERTICAL
+    HORIZONTAL, VERTICAL
 }
+
+@Composable
+fun FoodMainItemLoader(modifier: Modifier, brush: Brush) {
+    Column(
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(12.dp)
+            .height(220.dp)
+    ) {
+        Box {
+            Box(
+                modifier = Modifier
+                    .background(brush)
+                    .clip(RoundedCornerShape(10.dp))
+                    .fillMaxWidth()
+                    .height(100.dp)
+            )
+        }
+        Spacer(modifier = Modifier.height(8.dp))
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(18.dp)
+                .background(brush),
+        )
+
+        Spacer(modifier = Modifier.height(4.dp))
+
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(24.dp)
+                .background(brush),
+        )
+        Spacer(modifier = Modifier.height(4.dp))
+        Box(
+            modifier = Modifier
+                .height(24.dp)
+                .background(brush),
+        )
+
+        Spacer(modifier = Modifier.height(4.dp))
+
+        Box(
+            modifier = Modifier
+                .width(40.dp)
+                .height(24.dp)
+                .background(brush),
+        )
+    }
+
+
+}
+
 
 @Preview(showBackground = true)
 @Composable
 fun FoodIngredientPreview() {
     MaterialTheme {
-        FoodIngredient("","")
+        FoodIngredient("", "")
     }
 }
 
@@ -270,15 +296,11 @@ fun FoodMainAttributePreview() {
     MaterialTheme {
         Column {
             FoodItemAttribute(
-                icon = R.drawable.ic_comment,
-                description = "500+ reviews",
-                type = OrientationType.HORIZONTAL
+                icon = R.drawable.ic_comment, description = "500+ reviews", type = OrientationType.HORIZONTAL
             )
 
             FoodItemAttribute(
-                icon = R.drawable.ic_calories,
-                description = "100-300 Calories",
-                type = OrientationType.VERTICAL
+                icon = R.drawable.ic_calories, description = "100-300 Calories", type = OrientationType.VERTICAL
             )
         }
     }

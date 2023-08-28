@@ -1,10 +1,17 @@
 package com.yape.menu
 
 import android.content.ClipData.Item
+import androidx.compose.animation.core.FastOutSlowInEasing
+import androidx.compose.animation.core.RepeatMode
+import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.core.infiniteRepeatable
+import androidx.compose.animation.core.rememberInfiniteTransition
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -16,6 +23,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -26,7 +35,7 @@ import androidx.compose.ui.unit.sp
 import coil.compose.rememberAsyncImagePainter
 
 @Composable
-fun CategoryMainItem(title: String, imageUrl: String) {
+fun CategoryMainItem(title: String = "", imageUrl: String = "") {
     Box(
         modifier = Modifier
             .padding(start = 12.dp, top = 12.dp, bottom = 12.dp)
@@ -43,15 +52,43 @@ fun CategoryMainItem(title: String, imageUrl: String) {
                     .height(100.dp)
 
             )
-
+            Spacer(modifier = Modifier.height(6.dp))
             Text(
                 text = title,
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 6.dp),
+                    .background(Color.Transparent)
+                    .fillMaxWidth(),
                 textAlign = TextAlign.Center,
                 fontSize = 20.sp,
                 style = MaterialTheme.typography.displayMedium
+            )
+        }
+    }
+}
+
+@Composable
+fun CategoryMainItemLoader(brush: Brush) {
+    Box(
+        modifier = Modifier
+            .padding(start = 12.dp, top = 12.dp, bottom = 12.dp)
+            .width(100.dp)
+            .height(150.dp)
+    ) {
+        Column {
+            Box(
+                modifier = Modifier
+                    .background(brush)
+                    .clip(RoundedCornerShape(10.dp))
+                    .fillMaxWidth()
+                    .height(100.dp)
+            )
+            Spacer(modifier = Modifier.height(6.dp))
+            Box(
+                modifier = Modifier
+                    .background(brush)
+                    .fillMaxWidth()
+                    .height(24.dp)
+
             )
         }
     }

@@ -33,12 +33,16 @@ import com.google.accompanist.flowlayout.FlowMainAxisAlignment
 import com.google.accompanist.flowlayout.FlowRow
 import com.google.accompanist.flowlayout.SizeMode
 import com.yape.menu.CategoryMainItem
+import com.yape.menu.CategoryMainItemLoader
 import com.yape.menu.FoodMainItem
+import com.yape.menu.FoodMainItemLoader
+import com.yape.menu.ShimmerEffect
 import com.yape.menu.domain.model.CategoryModel
 import com.yape.menu.domain.model.FoodModel
 import com.yape.menu.navigation.BottomBarNav
 import com.yape.menu.toJson
 import kotlinx.coroutines.flow.StateFlow
+
 
 @Composable
 fun InitHomeScreen(navHostController: NavHostController) {
@@ -62,12 +66,66 @@ private fun HomeScreen(navHostController: NavHostController, state: StateFlow<Ho
             )
         }
         when {
-            state.loading -> {}
-            else ->{
-                if(state.categoryList.isNotEmpty()) item { CategorySection(state.categoryList) }
-                if(state.foodTrendingList.isNotEmpty()) item { FoodSection(navHostController, state.foodTrendingList) }
+            state.isFoodTrendingLoading && state.isCategoryLoading -> {
+                item { CategorySectionShimmer() }
+                item { FoodSectionShimmer() }
             }
 
+            else -> {
+                if (state.categoryList.isNotEmpty()) item { CategorySection(state.categoryList) }
+                if (state.foodTrendingList.isNotEmpty()) item { FoodSection(navHostController, state.foodTrendingList) }
+            }
+
+        }
+    }
+}
+
+@Composable
+private fun CategorySectionShimmer() {
+    ShimmerEffect { brush ->
+        Column {
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(36.dp)
+                    .padding(horizontal = 16.dp)
+                    .background(brush)
+            )
+
+            LazyRow(
+                contentPadding = PaddingValues(start = 4.dp, end = 16.dp),
+            ) {
+                items(8) {
+                    CategoryMainItemLoader(brush)
+                }
+            }
+        }
+    }
+
+
+}
+
+@Composable
+private fun FoodSectionShimmer() {
+    ShimmerEffect { brush ->
+        val itemSize: Dp = (LocalConfiguration.current.screenWidthDp.dp / 2) - 12.dp
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(36.dp)
+                .padding(horizontal = 16.dp)
+                .background(brush)
+        )
+
+        FlowRow(
+            mainAxisSize = SizeMode.Expand,
+            mainAxisSpacing = 8.dp,
+            mainAxisAlignment = FlowMainAxisAlignment.SpaceBetween,
+            modifier = Modifier.padding(horizontal = 8.dp)
+        ) {
+            for(i in 1..14) {
+                FoodMainItemLoader(modifier = Modifier.width(itemSize), brush = brush)
+            }
         }
     }
 }
@@ -93,7 +151,7 @@ private fun FoodSection(navHostController: NavHostController, foodTrendingList: 
                 modifier = Modifier
                     .width(itemSize)
                     .clickable {
-                       navHostController.navigate(BottomBarNav.FoodDetailScreen.createRoot(it.toJson()))
+                        navHostController.navigate(BottomBarNav.FoodDetailScreen.createRoot(it.toJson()))
                     },
                 foodTrending = it
             )
@@ -102,9 +160,8 @@ private fun FoodSection(navHostController: NavHostController, foodTrendingList: 
 
 }
 
-
 @Composable
-private fun CategorySection(categoryList: List<CategoryModel>) {
+private fun CategorySection(categoryList: List<CategoryModel> = mutableListOf()) {
     Column {
         TitleSection(
             title = "Browse by Category",
@@ -122,7 +179,6 @@ private fun CategorySection(categoryList: List<CategoryModel>) {
                     )
                 }
             }
-
         }
     }
 }

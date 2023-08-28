@@ -4,7 +4,8 @@ import com.yape.menu.domain.model.CategoryModel
 import com.yape.menu.domain.model.FoodModel
 
 data class HomeUiState(
-    val loading: Boolean = false,
+    val isCategoryLoading: Boolean = false,
+    val isFoodTrendingLoading:Boolean = false,
     val error: Boolean = false,
     val categoryList: List<CategoryModel> = mutableListOf(),
     val foodTrendingList: List<FoodModel> = mutableListOf()
