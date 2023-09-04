@@ -1,9 +1,11 @@
 package com.yape.menu.domain.usecase
 
-import com.yape.menu.data.repository.FoodRepository
+import com.yape.data.repository.FoodRepository
 import com.yape.menu.domain.model.FoodModel
+import com.yape.menu.domain.model.convertToModel
 import com.yape.menu.domain.util.UseCase
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class GetAllFoodList @Inject constructor(
@@ -11,6 +13,6 @@ class GetAllFoodList @Inject constructor(
 ) : UseCase.WithoutParams<Flow<List<FoodModel>>> {
 
     override suspend fun invoke(): Flow<List<FoodModel>> {
-        return repository.getAllFoodList()
+        return repository.getAllFoodList().map { it.convertToModel() }
     }
 }

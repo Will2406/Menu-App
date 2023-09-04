@@ -1,10 +1,10 @@
-package com.yape.menu.data.di
+package com.yape.data.di
 
-import com.yape.menu.data.datasource.category.CategoryRemoteDataSource
-import com.yape.menu.data.datasource.category.CategoryRemoteDataSourceImpl
-import com.yape.menu.data.datasource.food.FoodRemoteDataSource
-import com.yape.menu.data.datasource.food.FoodRemoteDataSourceImpl
-import com.yape.menu.data.core.MenuService
+import com.yape.data.datasource.category.CategoryRemoteDataSource
+import com.yape.data.datasource.category.CategoryRemoteDataSourceImpl
+import com.yape.data.datasource.food.FoodRemoteDataSource
+import com.yape.data.datasource.food.FoodRemoteDataSourceImpl
+import com.yape.data.remote.MenuService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

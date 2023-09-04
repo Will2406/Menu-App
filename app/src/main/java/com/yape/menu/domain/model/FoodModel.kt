@@ -1,7 +1,8 @@
 package com.yape.menu.domain.model
 
-import com.yape.menu.data.core.response.FoodResponse
-import com.yape.menu.data.core.response.IngredientResponse
+
+import com.yape.data.remote.model.FoodResponse
+import com.yape.data.remote.model.IngredientResponse
 
 data class FoodModel(
     var id: String,

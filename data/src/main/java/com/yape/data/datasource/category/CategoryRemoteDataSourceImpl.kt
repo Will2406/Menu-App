@@ -1,9 +1,10 @@
-package com.yape.menu.data.datasource.category
+package com.yape.data.datasource.category
 
-import com.yape.menu.data.core.MenuService
-import com.yape.menu.data.core.generics.DataResult
-import com.yape.menu.data.core.generics.safeApiCall
-import com.yape.menu.data.core.response.CategoryListResponse
+
+import com.yape.data.remote.MenuService
+import com.yape.data.core.DataResult
+import com.yape.data.core.safeApiCall
+import com.yape.data.remote.model.CategoryListResponse
 import javax.inject.Inject
 
 class CategoryRemoteDataSourceImpl @Inject constructor(private val api: MenuService) : CategoryRemoteDataSource {

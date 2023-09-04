@@ -40,11 +40,11 @@ import com.yape.menu.FoodItemAttribute
 import com.yape.menu.HeaderComponent
 import com.yape.menu.OrientationType
 import com.yape.menu.R
-import com.yape.menu.data.core.response.IngredientResponse
 import com.yape.menu.domain.model.FoodModel
 import com.yape.menu.navigation.BottomBarNav
 import com.yape.menu.ui.theme.gray50Percent
 import com.yape.menu.ui.theme.transparent
+import com.yape.data.remote.model.IngredientResponse
 import kotlinx.coroutines.flow.StateFlow
 
 

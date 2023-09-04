@@ -83,19 +83,14 @@ dependencies {
     implementation(Dependencies.Navigation.Hilt_Compose)
     implementation(Dependencies.Navigation.Compose)
 
-    implementation(Dependencies.Retrofit.Retrofit)
-    implementation(Dependencies.Retrofit.MoshiAdapter)
-
     implementation(Dependencies.Hilt.Hilt)
     kapt(Dependencies.Hilt.Compiler)
-
-    implementation(Dependencies.Retrofit.Interceptor.OkHttp)
-    implementation(Dependencies.Retrofit.Interceptor.Interceptor)
 
     implementation(Dependencies.Iol.Compose)
 
     implementation(Dependencies.Maps.Services)
     implementation(Dependencies.Maps.Compose)
+    implementation(project(":data"))
 
 
 }

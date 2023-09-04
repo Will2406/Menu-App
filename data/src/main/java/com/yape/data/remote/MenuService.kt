@@ -1,8 +1,8 @@
-package com.yape.menu.data.core
+package com.yape.data.remote
 
-import com.yape.menu.data.core.response.CategoryListResponse
-import com.yape.menu.data.core.response.FoodListResponse
-import com.yape.menu.data.core.response.TrendingFoodListResponse
+import com.yape.data.remote.model.CategoryListResponse
+import com.yape.data.remote.model.FoodListResponse
+import com.yape.data.remote.model.TrendingFoodListResponse
 import retrofit2.Response
 import retrofit2.http.GET
 

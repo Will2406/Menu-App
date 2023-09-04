@@ -1,6 +1,5 @@
-package com.yape.menu.data.core.generics
+package com.yape.data.core
 
-import android.util.Log
 import com.squareup.moshi.Json
 import com.squareup.moshi.Moshi
 import kotlinx.coroutines.CoroutineDispatcher

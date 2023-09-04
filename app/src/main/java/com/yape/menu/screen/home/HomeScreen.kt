@@ -40,7 +40,7 @@ import com.yape.menu.ShimmerEffect
 import com.yape.menu.domain.model.CategoryModel
 import com.yape.menu.domain.model.FoodModel
 import com.yape.menu.navigation.BottomBarNav
-import com.yape.menu.toJson
+import com.yape.data.core.toJson
 import kotlinx.coroutines.flow.StateFlow
 
 

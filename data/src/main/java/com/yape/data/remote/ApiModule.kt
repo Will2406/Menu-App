@@ -1,5 +1,6 @@
-package com.yape.menu.data.core
+package com.yape.data.remote
 
+import com.yape.remote.BuildConfig
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,7 +19,7 @@ object ApiModule {
     @Singleton
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("https://demo7322680.mockable.io/")
+            .baseUrl(BuildConfig.BASE_URL)
             .addConverterFactory(MoshiConverterFactory.create())
             .client(okHttpClient)
             .build()

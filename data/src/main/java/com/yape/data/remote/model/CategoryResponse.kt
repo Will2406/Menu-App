@@ -1,4 +1,4 @@
-package com.yape.menu.data.core.response
+package com.yape.data.remote.model
 
 import com.squareup.moshi.Json
 
