@@ -25,6 +25,8 @@ Esta demo es una app de recetas, donde he puesto a prueba mis habilidades y cono
 
  **Función de Geolocalización**: Encuentra restaurantes cercanos que sirven tu comida elegida, utilizando servicios de mapas.
 
+ **Función de guardar tus recetas favoritas**: Ten la opcion de guardar las mejores recetas y revisarlas en cualquier momento(offline).
+
  **Interfaz de Usuario Intuitiva**: Disfruta de una experiencia fluida y amigable al navegar por las características de la aplicación.
 
 
@@ -67,6 +69,8 @@ Cada **feature** incluye:
 - **Patrón Repository**: La capa de datos utiliza el patrón Repository para abstraer y gestionar las fuentes de datos.
 
 - **Comunicación de Red**: Retrofit para comunicarse con las fuentes de datos remotas.
+
+- **Guardado de datos en Local**: Room para uso de datos de manera de local sin necesidad de internet.
 
 - **Carga de Imágenes**: Coil para cargar imágenes de manera eficiente en la interfaz de usuario.
 
