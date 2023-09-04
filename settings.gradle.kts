@@ -13,8 +13,8 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "menu"
-include(":app")
+rootProject.name = "Menu"
 include(":buildScr")
+include(":app")
 include(":data")
 include(":domain")
