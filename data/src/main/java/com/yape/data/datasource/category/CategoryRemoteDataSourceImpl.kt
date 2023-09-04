@@ -9,7 +9,7 @@ import javax.inject.Inject
 
 class CategoryRemoteDataSourceImpl @Inject constructor(private val api: MenuService) : CategoryRemoteDataSource {
 
-    override suspend fun getCategoryList(): DataResult<CategoryListResponse> {
+    override suspend fun getAll(): DataResult<CategoryListResponse> {
         return safeApiCall { api.getCategories() }
     }
 

@@ -8,13 +8,15 @@ import com.yape.data.remote.model.FoodListResponse
 import com.yape.data.remote.model.TrendingFoodListResponse
 import javax.inject.Inject
 
-class FoodRemoteDataSourceImpl @Inject constructor(private val api: MenuService) : FoodRemoteDataSource {
+class FoodRemoteDataSourceImpl @Inject constructor(
+    private val api: MenuService
+) : FoodRemoteDataSource {
 
-    override suspend fun getTrendingFood(): DataResult<TrendingFoodListResponse> {
+    override suspend fun getTrending(): DataResult<TrendingFoodListResponse> {
         return safeApiCall { api.getTrendingFood() }
     }
 
-    override suspend fun getAllFood(): DataResult<FoodListResponse> {
+    override suspend fun getAll(): DataResult<FoodListResponse> {
         return safeApiCall { api.getAllFood() }
     }
 }

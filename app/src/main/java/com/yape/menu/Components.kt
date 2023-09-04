@@ -15,6 +15,9 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -28,16 +31,23 @@ import androidx.navigation.NavHostController
 
 
 @Composable
-fun HeaderComponent(navHostController: NavHostController, modifier: Modifier = Modifier, title: String) {
+fun HeaderComponent(
+    modifier: Modifier = Modifier,
+    title: String,
+    isSaved: Boolean,
+    onBackPressed: () -> Unit,
+    onSavePressed: (state: Boolean) -> Unit
+) {
     ConstraintLayout(
         modifier = modifier
             .fillMaxWidth()
             .height(68.dp)
     ) {
         val (backButtonRef, titleRef, saveButtonRef) = createRefs()
+        var stateSaveButton = remember { mutableStateOf(isSaved) }
 
         IconButton(
-            onClick = { navHostController.popBackStack() },
+            onClick = { onBackPressed() },
             modifier = Modifier
                 .clip(CircleShape)
                 .background(MaterialTheme.colorScheme.surface)
@@ -66,7 +76,10 @@ fun HeaderComponent(navHostController: NavHostController, modifier: Modifier = M
         )
 
         IconButton(
-            onClick = { },
+            onClick = {
+                stateSaveButton.value = !stateSaveButton.value
+                onSavePressed(stateSaveButton.value)
+            },
             modifier = Modifier
                 .clip(CircleShape)
                 .background(MaterialTheme.colorScheme.surface)
@@ -76,9 +89,8 @@ fun HeaderComponent(navHostController: NavHostController, modifier: Modifier = M
                 }
         ) {
             Icon(
-                painter = painterResource(id = R.drawable.ic_bookmark),
-                contentDescription = "Favorite",
-                tint = MaterialTheme.colorScheme.outline
+                painter = if (!stateSaveButton.value) painterResource(id = R.drawable.ic_bookmark) else painterResource(id = R.drawable.ic_bookmark_mark),
+                contentDescription = "Favorite"
             )
         }
 
@@ -90,6 +102,6 @@ fun HeaderComponent(navHostController: NavHostController, modifier: Modifier = M
 @Composable
 fun HeaderComponentPreview() {
     MaterialTheme {
-        //HeaderComponent(title = "Details")
+        HeaderComponent(Modifier, title = "Details", false,{}, {})
     }
 }

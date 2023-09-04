@@ -11,7 +11,7 @@ object Versions {
     const val navigation = "2.5.3"
     const val hilt = "2.45"
     const val glide = "4.13.2"
-    const val room = "2.4.1"
+    const val room = "2.5.2"
 
     const val retrofit = "2.9.0"
 }

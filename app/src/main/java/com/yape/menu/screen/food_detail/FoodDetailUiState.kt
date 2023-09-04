@@ -6,5 +6,5 @@ import com.yape.domain.model.FoodModel
 data class FoodDetailUiState(
     val loading: Boolean = false,
     val error: Boolean = false,
-    val trendingFood: FoodModel? = null,
+    val food: FoodModel? = null,
 )

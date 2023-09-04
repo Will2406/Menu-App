@@ -18,6 +18,7 @@ import androidx.compose.material3.Divider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -51,17 +52,29 @@ import kotlinx.coroutines.flow.StateFlow
 @Composable
 fun InitFoodDetailScreen(navHostController: NavHostController) {
     val foodDetailViewModel: FoodDetailViewModel = hiltViewModel()
-    FoodDetailScreen(navHostController = navHostController, state = foodDetailViewModel.viewState)
+    FoodDetailScreen(
+        navHostController = navHostController,
+        viewModel = foodDetailViewModel,
+        state = foodDetailViewModel.viewState
+    )
 }
 
 @Composable
-private fun FoodDetailScreen(navHostController: NavHostController, state: StateFlow<FoodDetailUiState>) {
+private fun FoodDetailScreen(
+    navHostController: NavHostController,
+    viewModel: FoodDetailViewModel,
+    state: StateFlow<FoodDetailUiState>
+) {
 
     val state = state.collectAsState().value
 
+    LaunchedEffect(Unit) {
+        viewModel.getFoodDetail()
+    }
+
     LazyColumn(modifier = Modifier.fillMaxSize()) {
         when {
-            state.trendingFood != null -> {
+            state.food != null -> {
                 item {
 
                     Box(
@@ -72,17 +85,25 @@ private fun FoodDetailScreen(navHostController: NavHostController, state: StateF
                         HeaderComponent(
                             modifier = Modifier.zIndex(2f),
                             title = "Details",
-                            navHostController = navHostController
+                            isSaved = state.food.isSaved,
+                            onBackPressed = { navHostController.popBackStack() },
+                            onSavePressed = { stateMarked ->
+                                val food = state.food.copy(isSaved = stateMarked)
+                                if (stateMarked) {
+                                    viewModel.saveFoodInLocalStorage(food)
+                                } else {
+                                    viewModel.deleteFoodInLocalStorage(food)
+                                }
+                            }
                         )
 
                         Image(
                             painter = rememberAsyncImagePainter(
-                                state.trendingFood.image
+                                state.food.image
                             ),
                             contentDescription = null,
                             contentScale = ContentScale.Crop,
                             modifier = Modifier
-
                                 .fillMaxSize()
                                 .zIndex(0f)
                         )
@@ -100,9 +121,9 @@ private fun FoodDetailScreen(navHostController: NavHostController, state: StateF
                     }
                 }
 
-                item { FoodDescription(trendingFood = state.trendingFood) }
+                item { FoodDescription(trendingFood = state.food) }
 
-                item { FoodIngredientList(ingredientList = state.trendingFood.ingredientList) }
+                item { FoodIngredientList(ingredientList = state.food.ingredientList) }
             }
         }
 

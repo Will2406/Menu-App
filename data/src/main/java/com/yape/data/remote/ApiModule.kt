@@ -1,6 +1,6 @@
 package com.yape.data.remote
 
-import com.yape.remote.BuildConfig
+import com.yape.data.BuildConfig
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

@@ -13,7 +13,7 @@ class CategoryRepository @Inject constructor(
 ) {
 
     suspend fun getCategoryList(): Flow<List<CategoryResponse>> = supervisorScope {
-        when (val result = remote.getCategoryList()) {
+        when (val result = remote.getAll()) {
             is DataResult.Success ->
                 flow {
                     emit(result.data.categoryList)

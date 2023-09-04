@@ -55,5 +55,7 @@ dependencies {
     implementation(Dependencies.Retrofit.Interceptor.OkHttp)
     implementation(Dependencies.Retrofit.Interceptor.Interceptor)
 
+    implementation(Dependencies.Room.Runtime)
+    kapt(Dependencies.Room.Compiler)
 
 }

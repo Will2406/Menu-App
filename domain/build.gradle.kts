@@ -39,6 +39,6 @@ dependencies {
 
     implementation(Dependencies.Hilt.Hilt)
     kapt(Dependencies.Hilt.Compiler)
-
+    implementation(Dependencies.Retrofit.MoshiAdapter)
     implementation(project(":data"))
 }

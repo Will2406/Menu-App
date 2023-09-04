@@ -1,7 +1,7 @@
 object Config {
     const val minSdkVersion = 27
-    const val targetSdkVersion = 33
-    const val compileSdkVersion = 33
+    const val targetSdkVersion = 34
+    const val compileSdkVersion = 34
 
     const val buildToolsVersion = "30.0.3"
 
@@ -11,7 +11,6 @@ object Config {
     const val applicationAppId = "com.yape.menu"
     const val applicationDataId = "com.yape.data"
     const val applicationDomainId = "com.yape.domain"
-
 
     const val testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 

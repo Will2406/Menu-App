@@ -73,6 +73,7 @@ object Dependencies {
         const val runtime = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycle}"
         const val viewmodel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
         const val livedata = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.lifecycle}"
+        const val Compose = "androidx.lifecycle:lifecycle-runtime-compose:2.7.0-alpha01"
     }
 
 }

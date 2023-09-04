@@ -5,7 +5,7 @@ import com.yape.data.core.DataResult
 import com.yape.data.remote.model.CategoryListResponse
 
 interface CategoryRemoteDataSource {
-    suspend fun getCategoryList(): DataResult<CategoryListResponse>
+    suspend fun getAll(): DataResult<CategoryListResponse>
 }
 
 interface CategoryLocalDataSource {

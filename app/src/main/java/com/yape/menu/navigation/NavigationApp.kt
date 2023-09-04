@@ -17,12 +17,11 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.navArgument
 import com.yape.menu.R
 import com.yape.menu.screen.FoodMapScreen
-import com.yape.menu.screen.search.SearchScreen
 import com.yape.menu.screen.ProfileScreen
-import com.yape.menu.screen.SavedScreen
 import com.yape.menu.screen.StatsScreen
 import com.yape.menu.screen.food_detail.InitFoodDetailScreen
 import com.yape.menu.screen.home.InitHomeScreen
+import com.yape.menu.screen.saved.InitSavedScreen
 import com.yape.menu.screen.search.InitSearchScreen
 
 
@@ -32,7 +31,7 @@ fun Navigation(navController: NavHostController) {
         composable(route = BottomBarNav.HomeScreen.route) { InitHomeScreen(navController) }
         composable(route = BottomBarNav.SearchScreen.route) { InitSearchScreen(navController) }
         composable(route = BottomBarNav.StatsScreen.route) { StatsScreen() }
-        composable(route = BottomBarNav.SavedScreen.route) { SavedScreen() }
+        composable(route = BottomBarNav.SavedScreen.route) { InitSavedScreen(navController) }
         composable(route = BottomBarNav.ProfileScreen.route) { ProfileScreen() }
         composable(
             route = BottomBarNav.FoodDetailScreen.route,

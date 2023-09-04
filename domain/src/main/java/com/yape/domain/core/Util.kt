@@ -1,14 +1,19 @@
 package com.yape.domain.core
 
-import com.yape.data.core.fromJson
-import com.yape.data.core.toJson
+import com.squareup.moshi.Moshi
 
 inline fun <reified T> T.toJson(): String {
-    return T::class.java.toJson()
+    val moshi = Moshi.Builder().build()
+    val matchAdapter = moshi.adapter(T::class.java)
+    return matchAdapter.toJson(this)
 }
 
 inline fun <reified T> String.fromJson(): T? {
-    return this.fromJson<T>()
+    return try {
+        val moshi = Moshi.Builder().build()
+        val matchAdapter = moshi.adapter(T::class.java)
+        matchAdapter.fromJson(this)
+    } catch (_: Exception) {
+        null
+    }
 }
-
-
