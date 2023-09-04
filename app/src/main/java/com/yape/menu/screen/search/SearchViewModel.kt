@@ -2,8 +2,7 @@ package com.yape.menu.screen.search
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.yape.menu.domain.usecase.GetAllFoodList
-import com.yape.menu.screen.home.HomeUiState
+import com.yape.domain.usecase.GetAllFoodList
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

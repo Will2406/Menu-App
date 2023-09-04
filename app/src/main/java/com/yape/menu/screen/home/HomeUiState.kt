@@ -1,7 +1,7 @@
 package com.yape.menu.screen.home
 
-import com.yape.menu.domain.model.CategoryModel
-import com.yape.menu.domain.model.FoodModel
+import com.yape.domain.model.CategoryModel
+import com.yape.domain.model.FoodModel
 
 data class HomeUiState(
     val isCategoryLoading: Boolean = false,

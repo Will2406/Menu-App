@@ -31,7 +31,7 @@ import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import coil.compose.rememberAsyncImagePainter
-import com.yape.menu.domain.model.FoodModel
+import com.yape.domain.model.FoodModel
 
 
 @Composable

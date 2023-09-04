@@ -1,4 +1,4 @@
-package com.yape.menu.domain.model
+package com.yape.domain.model
 
 
 import com.yape.data.remote.model.FoodResponse
@@ -13,7 +13,7 @@ data class FoodModel(
     var image: String,
     var price: String,
     var description: String,
-    var ingredientList: List<IngredientResponse>
+    var ingredientList: List<IngredientModel>
 )
 
 
@@ -26,7 +26,7 @@ fun FoodResponse.convertToModel() = FoodModel(
     rating = rating,
     price = price,
     description = description,
-    ingredientList = ingredientList
+    ingredientList = ingredientList.convertToModel()
 )
 
 fun List<FoodResponse>.convertToModel() = map(FoodResponse::convertToModel)

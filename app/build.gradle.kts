@@ -7,11 +7,11 @@ plugins {
 }
 
 android {
-    namespace = Config.applicationId
-    compileSdk = 34
+    namespace = Config.applicationAppId
+    compileSdk = Config.compileSdkVersion
 
     defaultConfig {
-        applicationId = Config.applicationId
+        applicationId = Config.applicationAppId
         minSdk = Config.minSdkVersion
         targetSdk = Config.targetSdkVersion
         versionCode = Config.versionCode
@@ -90,7 +90,8 @@ dependencies {
 
     implementation(Dependencies.Maps.Services)
     implementation(Dependencies.Maps.Compose)
-    implementation(project(":data"))
+
+    implementation(project(":domain"))
 
 
 }

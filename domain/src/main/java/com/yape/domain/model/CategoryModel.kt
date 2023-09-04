@@ -1,4 +1,4 @@
-package com.yape.menu.domain.model
+package com.yape.domain.model
 
 import com.yape.data.remote.model.CategoryResponse
 

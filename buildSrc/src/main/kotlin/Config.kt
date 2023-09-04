@@ -8,7 +8,10 @@ object Config {
     const val versionCode = 1
     const val versionName = "1.0.0"
 
-    const val applicationId = "com.yape.menu"
+    const val applicationAppId = "com.yape.menu"
+    const val applicationDataId = "com.yape.data"
+    const val applicationDomainId = "com.yape.domain"
+
 
     const val testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 

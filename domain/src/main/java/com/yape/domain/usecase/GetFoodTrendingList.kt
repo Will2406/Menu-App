@@ -1,9 +1,9 @@
-package com.yape.menu.domain.usecase
+package com.yape.domain.usecase
 
 import com.yape.data.repository.FoodRepository
-import com.yape.menu.domain.model.FoodModel
-import com.yape.menu.domain.model.convertToModel
-import com.yape.menu.domain.util.UseCase
+import com.yape.domain.model.FoodModel
+import com.yape.domain.model.convertToModel
+import com.yape.domain.core.UseCase
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject

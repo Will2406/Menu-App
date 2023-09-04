@@ -1,4 +1,4 @@
-package com.yape.menu.domain.util
+package com.yape.domain.core
 
 sealed interface UseCase{
 

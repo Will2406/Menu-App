@@ -7,9 +7,9 @@ plugins {
 }
 
 android {
-    namespace = Config.applicationDataId
+    namespace = Config.applicationDomainId
     compileSdk = Config.compileSdkVersion
-
+    
     defaultConfig {
         minSdk = Config.minSdkVersion
 
@@ -18,20 +18,11 @@ android {
     }
 
     buildTypes {
-        debug {
-            buildConfigField("String", "BASE_URL", "\"https://demo7322680.mockable.io/\"")
-
-
-        }
         release {
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
-    buildFeatures {
-        buildConfig = true
-    }
-
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
@@ -46,14 +37,8 @@ dependencies {
 
     implementation(Dependencies.AndroidX.CoreKtx)
 
-    api(Dependencies.Retrofit.Retrofit)
-    implementation(Dependencies.Retrofit.MoshiAdapter)
-
     implementation(Dependencies.Hilt.Hilt)
     kapt(Dependencies.Hilt.Compiler)
 
-    implementation(Dependencies.Retrofit.Interceptor.OkHttp)
-    implementation(Dependencies.Retrofit.Interceptor.Interceptor)
-
-
+    implementation(project(":data"))
 }

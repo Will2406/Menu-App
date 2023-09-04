@@ -28,7 +28,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.yape.menu.FoodMainItem
 import com.yape.menu.navigation.BottomBarNav
-import com.yape.data.core.toJson
+import com.yape.domain.core.toJson
 import kotlinx.coroutines.flow.StateFlow
 
 

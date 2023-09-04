@@ -4,8 +4,8 @@ import android.net.Uri
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.yape.menu.domain.model.FoodModel
-import com.yape.data.core.fromJson
+import com.yape.domain.core.fromJson
+import com.yape.domain.model.FoodModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

@@ -1,6 +1,6 @@
 package com.yape.menu.screen.search
 
-import com.yape.menu.domain.model.FoodModel
+import com.yape.domain.model.FoodModel
 
 data class SearchUiState(
     val loading: Boolean = false,

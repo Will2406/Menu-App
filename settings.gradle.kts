@@ -17,3 +17,4 @@ rootProject.name = "menu"
 include(":app")
 include(":buildScr")
 include(":data")
+include(":domain")
