@@ -8,6 +8,7 @@ import com.android.menu.data.datasource.food.FoodRemoteDataSource
 import com.android.menu.data.datasource.food.FoodRemoteDataSourceImpl
 import com.android.menu.data.local.MenuDatabase
 import com.android.menu.data.remote.MenuService
+import com.google.firebase.firestore.FirebaseFirestore
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -23,7 +24,7 @@ class DataSourceModule {
 
     @Provides
     fun createFoodRemoteDataSource(api: MenuService): FoodRemoteDataSource =
-        FoodRemoteDataSourceImpl(api)
+        FoodRemoteDataSourceImpl(api, FirebaseFirestore.getInstance())
 
     @Provides
     fun createFoodLocalDataSource(database: MenuDatabase): FoodLocalDataSource =

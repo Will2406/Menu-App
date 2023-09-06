@@ -15,17 +15,8 @@ class FoodRepository @Inject constructor(
     private val local: FoodLocalDataSource
 ) {
 
-    suspend fun getFoodTrendingList(): Flow<List<FoodResponse>> = supervisorScope {
-        when (val result = remote.getTrending()) {
-            is DataResult.Success ->
-                flow {
-                    emit(result.data.trendingFoodList)
-                }
+    suspend fun getFoodTrendingList(): Flow<List<FoodResponse?>> = remote.getTrending()
 
-            is DataResult.Error -> throw Error()
-
-        }
-    }
 
     suspend fun getAllFoodList(): Flow<List<FoodResponse>> = supervisorScope {
         when (val result = remote.getAll()) {

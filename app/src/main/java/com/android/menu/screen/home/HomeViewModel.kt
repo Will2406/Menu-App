@@ -1,5 +1,6 @@
 package com.android.menu.screen.home
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.android.menu.domain.usecase.GetCategoryList
@@ -38,6 +39,7 @@ class HomeViewModel @Inject constructor(
 
             getFoodTrendingList()
                 .catch { cause ->
+                    cause.printStackTrace()
                     _viewState.update { it.copy(error = true) }
                 }
                 .collect { foodTrendingList ->

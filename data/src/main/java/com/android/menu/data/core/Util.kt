@@ -1,6 +1,7 @@
 package com.android.menu.data.core
 
 
+import android.util.Log
 import com.squareup.moshi.Moshi
 
 inline fun <reified T> T.toJson(): String {
@@ -14,8 +15,8 @@ inline fun <reified T> String.fromJson(): T? {
         val moshi = Moshi.Builder().build()
         val matchAdapter = moshi.adapter(T::class.java)
         matchAdapter.fromJson(this)
-    } catch (_: Exception) {
-        null
+    } catch (e: Exception) {
+        throw Error(e.message)
     }
 }
 
