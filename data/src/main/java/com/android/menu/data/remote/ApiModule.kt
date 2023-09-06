@@ -1,6 +1,6 @@
 package com.android.menu.data.remote
 
-import com.yape.data.BuildConfig
+import com.android.menu.data.BuildConfig
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

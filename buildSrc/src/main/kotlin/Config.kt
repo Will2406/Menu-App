@@ -9,8 +9,8 @@ object Config {
     const val versionName = "1.0.0"
 
     const val applicationAppId = "com.android.menu"
-    const val applicationDataId = "com.yape.data"
-    const val applicationDomainId = "com.yape.domain"
+    const val applicationDataId = "com.android.menu.data"
+    const val applicationDomainId = "com.android.menu.domain"
 
     const val testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
