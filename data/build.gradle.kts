@@ -4,6 +4,7 @@ plugins {
 
     id("kotlin-kapt")
     id("com.google.dagger.hilt.android")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -58,4 +59,6 @@ dependencies {
     implementation(Dependencies.Room.Runtime)
     kapt(Dependencies.Room.Compiler)
 
+    implementation(platform("com.google.firebase:firebase-bom:32.2.3"))
+    implementation("com.google.firebase:firebase-firestore-ktx")
 }
