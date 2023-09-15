@@ -23,8 +23,8 @@ class DataSourceModule {
         CategoryRemoteDataSourceImpl(FirebaseFirestore.getInstance())
 
     @Provides
-    fun createFoodRemoteDataSource(api: MenuService): FoodRemoteDataSource =
-        FoodRemoteDataSourceImpl(api, FirebaseFirestore.getInstance())
+    fun createFoodRemoteDataSource(): FoodRemoteDataSource =
+        FoodRemoteDataSourceImpl(FirebaseFirestore.getInstance())
 
     @Provides
     fun createFoodLocalDataSource(database: MenuDatabase): FoodLocalDataSource =

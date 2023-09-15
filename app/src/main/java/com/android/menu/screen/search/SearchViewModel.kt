@@ -24,7 +24,10 @@ class SearchViewModel @Inject constructor(
     init {
         viewModelScope.launch {
             getAllFoodList()
-                .catch { cause -> _viewState.update { it.copy(error = true) } }
+                .catch { cause -> _viewState.update {
+                    cause.printStackTrace()
+                    it.copy(error = true) }
+                }
                 .collect { allFoodList -> _viewState.update { _viewState.value.copy(allFoodList = allFoodList) } }
         }
     }

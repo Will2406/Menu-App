@@ -40,7 +40,7 @@ fun FoodResponse.convertToModel() = FoodModel(
     rating = rating,
     price = price,
     description = description,
-    ingredientList = ingredientList.convertToModel()
+    ingredientList = mutableListOf()
 )
 
 fun FoodEntity.convertToModel() = FoodModel(

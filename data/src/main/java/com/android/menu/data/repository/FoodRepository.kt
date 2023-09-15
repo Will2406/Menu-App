@@ -17,18 +17,8 @@ class FoodRepository @Inject constructor(
 
     suspend fun getFoodTrendingList(): Flow<List<FoodResponse?>> = remote.getTrending()
 
+    suspend fun getAllFoodList(): Flow<List<FoodResponse?>> = remote.getAll()
 
-    suspend fun getAllFoodList(): Flow<List<FoodResponse>> = supervisorScope {
-        when (val result = remote.getAll()) {
-            is DataResult.Success ->
-                flow {
-                    emit(result.data.foodList)
-                }
-
-            is DataResult.Error -> throw Error()
-
-        }
-    }
 
     suspend fun getAllStoredFoodList(): Flow<List<FoodEntity>> = supervisorScope {
         flow { emit(local.getAll()) }

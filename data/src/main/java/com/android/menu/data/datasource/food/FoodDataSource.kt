@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface FoodRemoteDataSource {
     suspend fun getTrending(): Flow<List<FoodResponse?>>
-    suspend fun getAll(): DataResult<FoodListResponse>
+    suspend fun getAll(): Flow<List<FoodResponse?>>
 }
 
 interface FoodLocalDataSource {
