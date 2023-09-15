@@ -40,7 +40,7 @@ fun FoodResponse.convertToModel() = FoodModel(
     rating = rating,
     price = price,
     description = description,
-    ingredientList = mutableListOf()
+    ingredientList = ingredientList.convertToModel()
 )
 
 fun FoodEntity.convertToModel() = FoodModel(
@@ -57,4 +57,3 @@ fun FoodEntity.convertToModel() = FoodModel(
 
 fun List<FoodEntity>.convertLocalToModel() = map(FoodEntity::convertToModel)
 
-fun List<FoodResponse>.convertRemoteToModel() = map(FoodResponse::convertToModel)
