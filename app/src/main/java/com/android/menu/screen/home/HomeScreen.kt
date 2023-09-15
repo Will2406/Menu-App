@@ -18,6 +18,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -41,18 +42,23 @@ import com.android.menu.domain.core.toJson
 import com.android.menu.domain.model.CategoryModel
 import com.android.menu.domain.model.FoodModel
 import com.android.menu.navigation.BottomBarNav
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.StateFlow
 
 
 @Composable
 fun InitHomeScreen(navHostController: NavHostController) {
     val homeViewModel: HomeViewModel = hiltViewModel()
-    HomeScreen(navHostController = navHostController, state = homeViewModel.viewState)
+    HomeScreen(navHostController = navHostController, viewModel = homeViewModel, state = homeViewModel.viewState)
 }
 
 @Composable
-private fun HomeScreen(navHostController: NavHostController, state: StateFlow<HomeUiState>) {
+private fun HomeScreen(navHostController: NavHostController, viewModel: HomeViewModel, state: StateFlow<HomeUiState>) {
     val state = state.collectAsState().value
+
+    LaunchedEffect(Unit) {
+
+    }
 
     LazyColumn(
         modifier = Modifier.fillMaxSize()
@@ -123,7 +129,7 @@ private fun FoodSectionShimmer() {
             mainAxisAlignment = FlowMainAxisAlignment.SpaceBetween,
             modifier = Modifier.padding(horizontal = 8.dp)
         ) {
-            for(i in 1..14) {
+            for (i in 1..14) {
                 FoodMainItemLoader(modifier = Modifier.width(itemSize), brush = brush)
             }
         }

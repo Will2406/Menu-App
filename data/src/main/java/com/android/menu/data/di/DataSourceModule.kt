@@ -19,8 +19,8 @@ import dagger.hilt.components.SingletonComponent
 class DataSourceModule {
 
     @Provides
-    fun createCategoryRemoteDataSource(api: MenuService): CategoryRemoteDataSource =
-        CategoryRemoteDataSourceImpl(api)
+    fun createCategoryRemoteDataSource(): CategoryRemoteDataSource =
+        CategoryRemoteDataSourceImpl(FirebaseFirestore.getInstance())
 
     @Provides
     fun createFoodRemoteDataSource(api: MenuService): FoodRemoteDataSource =
