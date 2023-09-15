@@ -18,7 +18,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -34,31 +33,25 @@ import com.google.accompanist.flowlayout.FlowMainAxisAlignment
 import com.google.accompanist.flowlayout.FlowRow
 import com.google.accompanist.flowlayout.SizeMode
 import com.android.menu.CategoryMainItem
-import com.android.menu.CategoryMainItemLoader
 import com.android.menu.FoodMainItem
-import com.android.menu.FoodMainItemLoader
-import com.android.menu.ShimmerEffect
 import com.android.menu.domain.core.toJson
 import com.android.menu.domain.model.CategoryModel
 import com.android.menu.domain.model.FoodModel
 import com.android.menu.navigation.BottomBarNav
-import kotlinx.coroutines.delay
+import com.android.menu.screen.util.CategorySectionShimmer
+import com.android.menu.screen.util.FoodSectionShimmer
 import kotlinx.coroutines.flow.StateFlow
 
 
 @Composable
 fun InitHomeScreen(navHostController: NavHostController) {
     val homeViewModel: HomeViewModel = hiltViewModel()
-    HomeScreen(navHostController = navHostController, viewModel = homeViewModel, state = homeViewModel.viewState)
+    HomeScreen(navHostController = navHostController, state = homeViewModel.viewState)
 }
 
 @Composable
-private fun HomeScreen(navHostController: NavHostController, viewModel: HomeViewModel, state: StateFlow<HomeUiState>) {
+private fun HomeScreen(navHostController: NavHostController, state: StateFlow<HomeUiState>) {
     val state = state.collectAsState().value
-
-    LaunchedEffect(Unit) {
-
-    }
 
     LazyColumn(
         modifier = Modifier.fillMaxSize()
@@ -86,58 +79,9 @@ private fun HomeScreen(navHostController: NavHostController, viewModel: HomeView
     }
 }
 
-@Composable
-private fun CategorySectionShimmer() {
-    ShimmerEffect { brush ->
-        Column {
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(36.dp)
-                    .padding(horizontal = 16.dp)
-                    .background(brush)
-            )
-
-            LazyRow(
-                contentPadding = PaddingValues(start = 4.dp, end = 16.dp),
-            ) {
-                items(8) {
-                    CategoryMainItemLoader(brush)
-                }
-            }
-        }
-    }
-
-
-}
 
 @Composable
-private fun FoodSectionShimmer() {
-    ShimmerEffect { brush ->
-        val itemSize: Dp = (LocalConfiguration.current.screenWidthDp.dp / 2) - 12.dp
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(36.dp)
-                .padding(horizontal = 16.dp)
-                .background(brush)
-        )
-
-        FlowRow(
-            mainAxisSize = SizeMode.Expand,
-            mainAxisSpacing = 8.dp,
-            mainAxisAlignment = FlowMainAxisAlignment.SpaceBetween,
-            modifier = Modifier.padding(horizontal = 8.dp)
-        ) {
-            for (i in 1..14) {
-                FoodMainItemLoader(modifier = Modifier.width(itemSize), brush = brush)
-            }
-        }
-    }
-}
-
-@Composable
-private fun FoodSection(navHostController: NavHostController, foodTrendingList: List<FoodModel>) {
+fun FoodSection(navHostController: NavHostController, foodTrendingList: List<FoodModel>) {
 
     TitleSection(
         title = "Trending Now",
