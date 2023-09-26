@@ -23,36 +23,37 @@ import com.android.menu.screen.home.InitHomeScreen
 import com.android.menu.screen.saved.InitSavedScreen
 import com.android.menu.screen.search.InitSearchScreen
 import com.android.menu.R
+import com.android.menu.screen.login.LoginScreen
 
 
 @Composable
 fun Navigation(navController: NavHostController) {
-    NavHost(navController = navController, startDestination = BottomBarNav.HomeScreen.route) {
-        composable(route = BottomBarNav.HomeScreen.route) { InitHomeScreen(navController) }
-        composable(route = BottomBarNav.SearchScreen.route) { InitSearchScreen(navController) }
-        composable(route = BottomBarNav.StatsScreen.route) { StatsScreen() }
-        composable(route = BottomBarNav.SavedScreen.route) { InitSavedScreen(navController) }
-        composable(route = BottomBarNav.ProfileScreen.route) { ProfileScreen() }
+    NavHost(navController = navController, startDestination = BottomBarRoute.HomeScreen.route) {
+        composable(route = BottomBarRoute.HomeScreen.route) { InitHomeScreen(navController) }
+        composable(route = BottomBarRoute.SearchScreen.route) { InitSearchScreen(navController) }
+        composable(route = BottomBarRoute.StatsScreen.route) { StatsScreen() }
+        composable(route = BottomBarRoute.SavedScreen.route) { InitSavedScreen(navController) }
+        composable(route = BottomBarRoute.ProfileScreen.route) { ProfileScreen() }
         composable(
-            route = BottomBarNav.FoodDetailScreen.route,
+            route = BottomBarRoute.FoodDetailScreen.route,
             arguments = listOf(
                 navArgument("food") {
                     type = NavType.StringType
                 }
             )
         ) { InitFoodDetailScreen(navController) }
-        composable(route = BottomBarNav.FoodMapScreen.route) { FoodMapScreen() }
+        composable(route = BottomBarRoute.FoodMapScreen.route) { FoodMapScreen() }
     }
 }
 
 @Composable
 fun BottomNavigationBar(navController: NavHostController) {
     val listItems = listOf(
-        BottomBarNav.HomeScreen,
-        BottomBarNav.SearchScreen,
-        BottomBarNav.StatsScreen,
-        BottomBarNav.SavedScreen,
-        BottomBarNav.ProfileScreen
+        BottomBarRoute.HomeScreen,
+        BottomBarRoute.SearchScreen,
+        BottomBarRoute.StatsScreen,
+        BottomBarRoute.SavedScreen,
+        BottomBarRoute.ProfileScreen
     )
 
     NavigationBar {

@@ -12,3 +12,8 @@ val Pink40 = Color(0xFF7D5260)
 
 val transparent = Color(0xFFFFFF)
 val gray50Percent = Color(0x80000000)
+
+val Orange40 = Color(0xFFf47a5b)
+
+
+val Orange80 = Color(0xFFcc5335)

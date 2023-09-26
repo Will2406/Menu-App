@@ -1,9 +1,7 @@
 package com.android.menu.screen.saved
 
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
@@ -24,7 +22,7 @@ import com.google.accompanist.flowlayout.FlowRow
 import com.google.accompanist.flowlayout.SizeMode
 import com.android.menu.FoodMainItem
 import com.android.menu.domain.core.toJson
-import com.android.menu.navigation.BottomBarNav
+import com.android.menu.navigation.BottomBarRoute
 import kotlinx.coroutines.flow.StateFlow
 
 
@@ -68,7 +66,7 @@ private fun SavedScreen(navHostController: NavHostController, viewModel: SavedVi
                     modifier = Modifier
                         .width(itemSize)
                         .clickable {
-                            navHostController.navigate(BottomBarNav.FoodDetailScreen.createRoot(it.toJson()))
+                            navHostController.navigate(BottomBarRoute.FoodDetailScreen.createRoot(it.toJson()))
                         },
                     foodTrending = it
                 )

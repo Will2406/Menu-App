@@ -1,7 +1,6 @@
 package com.android.menu.screen.util
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -15,15 +14,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavHostController
 import com.android.menu.CategoryMainItemLoader
-import com.android.menu.FoodMainItem
 import com.android.menu.FoodMainItemLoader
 import com.android.menu.ShimmerEffect
-import com.android.menu.domain.core.toJson
-import com.android.menu.domain.model.FoodModel
-import com.android.menu.navigation.BottomBarNav
-import com.android.menu.screen.home.TitleSection
 import com.google.accompanist.flowlayout.FlowMainAxisAlignment
 import com.google.accompanist.flowlayout.FlowRow
 import com.google.accompanist.flowlayout.SizeMode

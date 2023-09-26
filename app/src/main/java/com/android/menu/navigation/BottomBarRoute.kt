@@ -3,43 +3,43 @@ package com.android.menu.navigation
 import android.net.Uri
 import com.android.menu.R
 
-sealed class BottomBarNav(
+sealed class BottomBarRoute(
     val route: String,
     val title: String,
     var icon: Int? = null
 ) {
 
-    object HomeScreen : BottomBarNav(
+    object HomeScreen : BottomBarRoute(
         route = "Home",
         title = "Home",
         icon = R.drawable.ic_home
     )
 
-    object SearchScreen : BottomBarNav(
+    object SearchScreen : BottomBarRoute(
         route = "Search",
         title = "Search",
         icon = R.drawable.ic_order
     )
 
-    object StatsScreen : BottomBarNav(
+    object StatsScreen : BottomBarRoute(
         route = "Stats",
         title = "Stats",
         icon = R.drawable.ic_stats
     )
 
-    object SavedScreen : BottomBarNav(
+    object SavedScreen : BottomBarRoute(
         route = "Saved",
         title = "Saved",
         icon = R.drawable.ic_bookmark
     )
 
-    object ProfileScreen : BottomBarNav(
+    object ProfileScreen : BottomBarRoute(
         route = "Profile",
         title = "Profile",
         icon = R.drawable.ic_profile
     )
 
-    object FoodDetailScreen : BottomBarNav(
+    object FoodDetailScreen : BottomBarRoute(
         route = "FoodDetail/{food}",
         title = "FoodDetail"
     ) {
@@ -49,7 +49,7 @@ sealed class BottomBarNav(
         )
     }
 
-    object FoodMapScreen : BottomBarNav(
+    object FoodMapScreen : BottomBarRoute(
         route = "FoodMap",
         title = "FoodMap"
     )
