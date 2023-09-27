@@ -42,7 +42,7 @@ import com.android.menu.HeaderComponent
 import com.android.menu.OrientationType
 import com.android.menu.domain.model.FoodModel
 import com.android.menu.domain.model.IngredientModel
-import com.android.menu.navigation.BottomBarRoute
+import com.android.menu.navigation.main.BottomBarRoute
 import com.android.menu.ui.theme.gray50Percent
 import com.android.menu.ui.theme.transparent
 import com.android.menu.R

@@ -37,7 +37,7 @@ import com.android.menu.FoodMainItem
 import com.android.menu.domain.core.toJson
 import com.android.menu.domain.model.CategoryModel
 import com.android.menu.domain.model.FoodModel
-import com.android.menu.navigation.BottomBarRoute
+import com.android.menu.navigation.main.BottomBarRoute
 import com.android.menu.screen.util.CategorySectionShimmer
 import com.android.menu.screen.util.FoodSectionShimmer
 import kotlinx.coroutines.flow.StateFlow

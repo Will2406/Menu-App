@@ -29,7 +29,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.android.menu.FoodMainItem
 import com.android.menu.domain.core.toJson
-import com.android.menu.navigation.BottomBarRoute
+import com.android.menu.navigation.main.BottomBarRoute
 import kotlinx.coroutines.flow.StateFlow
 
 

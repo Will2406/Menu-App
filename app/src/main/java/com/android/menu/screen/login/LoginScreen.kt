@@ -1,5 +1,7 @@
 package com.android.menu.screen.login
 
+import android.content.Context
+import android.content.Intent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -31,6 +33,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
@@ -41,17 +44,18 @@ import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.android.menu.MainActivity
 import com.android.menu.R
 
 @Composable
-fun LoginScreen(navHostController: NavHostController = rememberNavController(), onLogin: () -> Unit) {
+fun LoginScreen(context: Context) {
 
     ConstraintLayout(
         modifier = Modifier.fillMaxSize()
     ) {
         val (headerRef, bodyRef, bottomRef) = createRefs()
-
-        var textPassword by remember { mutableStateOf("") }
+        var emailText by remember { mutableStateOf("") }
+        var passwordText by remember { mutableStateOf("") }
 
         var showPassword by remember { mutableStateOf(false) }
 
@@ -95,11 +99,11 @@ fun LoginScreen(navHostController: NavHostController = rememberNavController(), 
         {
 
             OutlinedTextField(
-                value = "",
+                value = emailText,
                 leadingIcon = {
                     Icon(Icons.Filled.Email, "")
                 },
-                onValueChange = {},
+                onValueChange = { emailText = it },
                 textStyle = MaterialTheme.typography.bodySmall,
                 modifier = Modifier.fillMaxWidth()
             )
@@ -109,12 +113,12 @@ fun LoginScreen(navHostController: NavHostController = rememberNavController(), 
             )
 
             OutlinedTextField(
-                value = textPassword,
+                value = passwordText,
                 leadingIcon = {
                     Icon(Icons.Filled.Password, "")
                 },
                 textStyle = MaterialTheme.typography.bodySmall,
-                onValueChange = { textPassword = it },
+                onValueChange = { passwordText = it },
                 visualTransformation = if (showPassword) {
                     VisualTransformation.None
                 } else {
@@ -152,7 +156,7 @@ fun LoginScreen(navHostController: NavHostController = rememberNavController(), 
 
             Button(
                 modifier = Modifier.fillMaxWidth(),
-                onClick = { onLogin.invoke() },
+                onClick = { context.startActivity(Intent(context, MainActivity::class.java)) },
 
                 colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFFE3F19))
             ) {
@@ -220,8 +224,6 @@ fun LoginScreen(navHostController: NavHostController = rememberNavController(), 
 @Composable
 fun LoginScreenPreview() {
     MaterialTheme {
-        LoginScreen() {
-
-        }
+        LoginScreen(context = LocalContext.current)
     }
 }

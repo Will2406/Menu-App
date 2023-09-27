@@ -1,4 +1,4 @@
-package com.android.menu.navigation
+package com.android.menu.navigation.main
 
 
 import androidx.compose.material3.Icon
@@ -23,7 +23,6 @@ import com.android.menu.screen.home.InitHomeScreen
 import com.android.menu.screen.saved.InitSavedScreen
 import com.android.menu.screen.search.InitSearchScreen
 import com.android.menu.R
-import com.android.menu.screen.login.LoginScreen
 
 
 @Composable
@@ -62,7 +61,7 @@ fun BottomNavigationBar(navController: NavHostController) {
 
         listItems.forEachIndexed { _, item ->
             NavigationBarItem(
-                icon = { Icon(painter = painterResource(id = item.icon ?: R.drawable.ic_comment), contentDescription = item.title) },
+                icon = { Icon(painter = painterResource(id = item.icon ?: R.drawable.ic_home), contentDescription = item.title) },
                 label = { Text(item.title) },
                 selected = currentRoute == item.route,
                 onClick = {

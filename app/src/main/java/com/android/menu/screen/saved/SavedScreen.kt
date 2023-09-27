@@ -22,7 +22,7 @@ import com.google.accompanist.flowlayout.FlowRow
 import com.google.accompanist.flowlayout.SizeMode
 import com.android.menu.FoodMainItem
 import com.android.menu.domain.core.toJson
-import com.android.menu.navigation.BottomBarRoute
+import com.android.menu.navigation.main.BottomBarRoute
 import kotlinx.coroutines.flow.StateFlow
 
 

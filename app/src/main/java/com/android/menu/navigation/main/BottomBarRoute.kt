@@ -1,4 +1,4 @@
-package com.android.menu.navigation
+package com.android.menu.navigation.main
 
 import android.net.Uri
 import com.android.menu.R

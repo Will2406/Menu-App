@@ -1,10 +1,10 @@
-package com.android.menu.navigation
+package com.android.menu.navigation.initial
 
-sealed class AppRoute(
+sealed class InitialRoute(
     val route: String,
     val title: String,
 ) {
-    object Login : AppRoute(
+    object Login : InitialRoute(
         route = "Login",
         title = "Login"
     )
