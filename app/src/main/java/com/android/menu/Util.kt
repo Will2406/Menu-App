@@ -20,7 +20,7 @@ fun ShimmerEffect(item: @Composable (brush: Brush) -> Unit) {
         Color.LightGray.copy(alpha = 0.6f),
     )
 
-    val transition = rememberInfiniteTransition()
+    val transition = rememberInfiniteTransition(label = "")
     val translateAnim = transition.animateFloat(
         initialValue = 0f,
         targetValue = 1000f,
@@ -30,7 +30,7 @@ fun ShimmerEffect(item: @Composable (brush: Brush) -> Unit) {
                 easing = FastOutSlowInEasing
             ),
             repeatMode = RepeatMode.Reverse
-        )
+        ), label = ""
     )
 
     val brush = Brush.linearGradient(

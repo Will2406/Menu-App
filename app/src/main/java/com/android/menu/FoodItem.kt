@@ -118,7 +118,7 @@ fun FoodStatsItem(modifier: Modifier = Modifier) {
             val startGuideline = createGuidelineFromStart(0.45f)
             val (imageRef, descriptionRef) = createRefs()
 
-            Image(painter = painterResource(id = R.drawable.poke),
+            Image(painter = painterResource(id = R.drawable.ic_launcher_background),
                 contentScale = ContentScale.Crop,
                 contentDescription = null,
                 modifier = Modifier

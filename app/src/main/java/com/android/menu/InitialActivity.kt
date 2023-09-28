@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.ui.platform.LocalContext
-import com.android.menu.screen.login.LoginScreen
+import com.android.menu.screen.login.InitLoginScreen
 import com.android.menu.ui.theme.MenuTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -16,7 +16,7 @@ class InitialActivity : ComponentActivity() {
 
         setContent {
             MenuTheme {
-                LoginScreen(context = LocalContext.current)
+                InitLoginScreen(context = LocalContext.current)
             }
         }
     }

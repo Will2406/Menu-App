@@ -66,8 +66,6 @@ dependencies {
     implementation(Dependencies.Compose.UI)
     implementation(Dependencies.Compose.Graphics)
     implementation(Dependencies.Compose.Preview)
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.google.android.material:material:1.9.0")
 
     debugImplementation(Dependencies.Compose.Tooling)
     debugImplementation(Dependencies.Compose.Manifest)
@@ -94,7 +92,6 @@ dependencies {
     implementation(Dependencies.Maps.Compose)
 
     implementation ("androidx.compose.material:material-icons-extended:1.5.1")
-
 
     implementation(project(":domain"))
 

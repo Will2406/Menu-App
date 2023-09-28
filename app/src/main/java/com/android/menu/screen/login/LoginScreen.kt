@@ -1,9 +1,12 @@
 package com.android.menu.screen.login
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.widget.Toast
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -26,6 +29,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -42,36 +46,64 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
-import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.android.menu.MainActivity
 import com.android.menu.R
+import com.android.menu.SocialMediaButton
+import com.android.menu.screen.home.HomeUiState
+import kotlinx.coroutines.flow.StateFlow
+
 
 @Composable
-fun LoginScreen(context: Context) {
+fun InitLoginScreen(context: Context) {
+
+    val loginViewModel: LoginViewModel = hiltViewModel()
+    LoginScreen(context = context, viewModel = loginViewModel, state = loginViewModel.viewState)
+}
+
+@Composable
+private fun LoginScreen(context: Context, viewModel: LoginViewModel, state: StateFlow<LoginUiState>) {
+
+    val state = state.collectAsState().value
+
+    when {
+        state.checkLoginSuccessful -> {
+            context.startActivity(Intent(context, MainActivity::class.java))
+            (context as Activity).finish()
+        }
+    }
+
+
+    var email by remember { mutableStateOf("") }
+    var password by remember { mutableStateOf("") }
+    var showPassword by remember { mutableStateOf(false) }
+
+    val googleSignInLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.StartActivityForResult()
+    ) { result ->
+        viewModel.checkLoginSuccessfulWithGoogle(intentResult = result.data)
+    }
 
     ConstraintLayout(
         modifier = Modifier.fillMaxSize()
     ) {
+
         val (headerRef, bodyRef, bottomRef) = createRefs()
-        var emailText by remember { mutableStateOf("") }
-        var passwordText by remember { mutableStateOf("") }
-
-        var showPassword by remember { mutableStateOf(false) }
-
 
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
                 .constrainAs(headerRef) {
-                    linkTo(top = parent.top, bottom = parent.bottom, bias = 0.2f)
+                    linkTo(top = parent.top, bottom = parent.bottom, bias = 0.16f)
                     linkTo(start = parent.start, end = parent.end)
                 }
         ) {
             Image(
                 painter = painterResource(id = R.drawable.logotype),
                 contentDescription = "",
-                modifier = Modifier.size(120.dp)
+                modifier = Modifier
+                    .size(140.dp)
+                    .padding(vertical = 16.dp)
             )
 
             Text(
@@ -99,11 +131,11 @@ fun LoginScreen(context: Context) {
         {
 
             OutlinedTextField(
-                value = emailText,
+                value = email,
                 leadingIcon = {
                     Icon(Icons.Filled.Email, "")
                 },
-                onValueChange = { emailText = it },
+                onValueChange = { email = it },
                 textStyle = MaterialTheme.typography.bodySmall,
                 modifier = Modifier.fillMaxWidth()
             )
@@ -113,12 +145,12 @@ fun LoginScreen(context: Context) {
             )
 
             OutlinedTextField(
-                value = passwordText,
+                value = password,
                 leadingIcon = {
                     Icon(Icons.Filled.Password, "")
                 },
                 textStyle = MaterialTheme.typography.bodySmall,
-                onValueChange = { passwordText = it },
+                onValueChange = { password = it },
                 visualTransformation = if (showPassword) {
                     VisualTransformation.None
                 } else {
@@ -156,8 +188,7 @@ fun LoginScreen(context: Context) {
 
             Button(
                 modifier = Modifier.fillMaxWidth(),
-                onClick = { context.startActivity(Intent(context, MainActivity::class.java)) },
-
+                onClick = { viewModel.login()},
                 colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFFE3F19))
             ) {
                 Text(
@@ -165,44 +196,46 @@ fun LoginScreen(context: Context) {
                     color = Color.White,
                     style = MaterialTheme.typography.bodySmall
                 )
-
             }
+            Spacer(modifier = Modifier.padding(12.dp))
 
-            Column(
-                verticalArrangement = Arrangement.Center,
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier
+                    .height(36.dp)
                     .fillMaxWidth()
             ) {
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
+                Divider(
+                    color = Color.LightGray,
                     modifier = Modifier
-                        .height(54.dp)
-                        .padding(top = 18.dp)
+                        .height(1.dp)
+                        .weight(1f)
                         .fillMaxWidth()
-                ) {
-                    Divider(
-                        color = Color.LightGray,
-                        modifier = Modifier
-                            .height(1.dp)
-                            .weight(1f)
-                            .fillMaxWidth()
-                    )
-                    Text(
-                        text = "or login with ",
-                        style = MaterialTheme.typography.bodySmall,
-                        textAlign = TextAlign.Center,
-                        fontSize = 16.sp,
-                        modifier = Modifier.weight(1.4f)
-                    )
-                    Divider(
-                        color = Color.LightGray,
-                        modifier = Modifier
-                            .height(1.dp)
-                            .weight(1f)
-                            .fillMaxWidth()
-                    )
-                }
+                )
+                Text(
+                    text = "or login with ",
+                    style = MaterialTheme.typography.bodySmall,
+                    textAlign = TextAlign.Center,
+                    fontSize = 16.sp,
+                    modifier = Modifier.weight(1.4f)
+                )
+                Divider(
+                    color = Color.LightGray,
+                    modifier = Modifier
+                        .height(1.dp)
+                        .weight(1f)
+                        .fillMaxWidth()
+                )
             }
+
+            Spacer(modifier = Modifier.padding(12.dp))
+
+            SocialMediaButton(
+                onClick = { viewModel.loginWithGoogle(googleSignInLauncher) },
+                text = "Continuar con Google",
+                icon = R.drawable.ic_google,
+                color = Color(0xFFF1F1F1)
+            )
         }
 
         Row(
@@ -224,6 +257,6 @@ fun LoginScreen(context: Context) {
 @Composable
 fun LoginScreenPreview() {
     MaterialTheme {
-        LoginScreen(context = LocalContext.current)
+        InitLoginScreen(context = LocalContext.current)
     }
 }
