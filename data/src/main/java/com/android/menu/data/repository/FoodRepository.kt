@@ -1,9 +1,8 @@
 package com.android.menu.data.repository
 
 import com.android.menu.data.datasource.food.FoodRemoteDataSource
-import com.android.menu.data.core.DataResult
 import com.android.menu.data.datasource.food.FoodLocalDataSource
-import com.android.menu.data.local.FoodEntity
+import com.android.menu.data.local.database.FoodEntity
 import com.android.menu.data.remote.model.FoodResponse
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

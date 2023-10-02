@@ -1,4 +1,4 @@
-package com.android.menu.data.local
+package com.android.menu.data.local.database
 
 import androidx.room.Dao
 import androidx.room.Delete

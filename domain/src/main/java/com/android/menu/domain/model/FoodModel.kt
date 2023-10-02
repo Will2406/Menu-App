@@ -1,7 +1,7 @@
 package com.android.menu.domain.model
 
 
-import com.android.menu.data.local.FoodEntity
+import com.android.menu.data.local.database.FoodEntity
 import com.android.menu.data.remote.model.FoodResponse
 
 

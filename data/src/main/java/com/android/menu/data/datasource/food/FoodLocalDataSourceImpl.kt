@@ -1,7 +1,7 @@
 package com.android.menu.data.datasource.food
 
-import com.android.menu.data.local.FoodEntity
-import com.android.menu.data.local.MenuDatabase
+import com.android.menu.data.local.database.FoodEntity
+import com.android.menu.data.local.database.MenuDatabase
 import javax.inject.Inject
 
 class FoodLocalDataSourceImpl @Inject constructor(

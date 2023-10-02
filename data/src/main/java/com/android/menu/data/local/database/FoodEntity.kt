@@ -1,4 +1,4 @@
-package com.android.menu.data.local
+package com.android.menu.data.local.database
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
