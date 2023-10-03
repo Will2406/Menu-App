@@ -1,4 +1,4 @@
-package com.android.menu
+package com.android.menu.activity
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity

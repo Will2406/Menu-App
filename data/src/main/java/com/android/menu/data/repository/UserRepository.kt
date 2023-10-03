@@ -21,8 +21,12 @@ class UserRepository @Inject constructor(
         remote.signInWithGoogleCredential(intent)
             .collect { userFromGoogle ->
                 userFromGoogle?.let { local.saveUserData(it.convertToEntity()) }
-                emit(userFromGoogle != null)
+                val checkLoginUser = userFromGoogle != null
+                local.saveLoginSuccessful(checkLoginUser)
+                emit(checkLoginUser)
             }
     }.flowOn(Dispatchers.IO)
+
+    suspend fun checkSession() = local.getValidatedSession()
 
 }

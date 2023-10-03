@@ -3,7 +3,6 @@ package com.android.menu.screen.login
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
@@ -47,10 +46,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.android.menu.MainActivity
+import com.android.menu.activity.MainActivity
 import com.android.menu.R
 import com.android.menu.SocialMediaButton
-import com.android.menu.screen.home.HomeUiState
 import kotlinx.coroutines.flow.StateFlow
 
 

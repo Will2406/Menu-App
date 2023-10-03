@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+   <style name="Theme.Menu.SplashScreen" parent="Theme.SplashScreen">
+       <item name="windowSplashScreenBackground">#FE3F19</item>
+       <!--<item name="windowSplashScreenAnimatedIcon"></item>-->
+       <item name="postSplashScreenTheme">@style/Theme.Menu</item>
+   </style>
+</resources>

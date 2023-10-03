@@ -11,10 +11,19 @@ class UserLocalDataSourceImp @Inject constructor(
 
     companion object {
         const val USER = "user"
+        const val LOGIN_SUCCESSFUL = "loginSuccessful"
     }
 
     override fun saveUserData(user: UserEntity) {
         sharedPreferences.edit().putString(USER, user.toJson()).apply()
+    }
+
+    override fun saveLoginSuccessful(isSuccess: Boolean) {
+        sharedPreferences.edit().putBoolean(LOGIN_SUCCESSFUL, isSuccess).apply()
+    }
+
+    override fun getValidatedSession(): Boolean {
+        return sharedPreferences.getBoolean(LOGIN_SUCCESSFUL, false)
     }
 
 }

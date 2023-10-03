@@ -12,4 +12,6 @@ interface UserRemoteDataSource {
 
 interface UserLocalDataSource {
     fun saveUserData(user: UserEntity)
+    fun saveLoginSuccessful(isSuccess: Boolean)
+    fun getValidatedSession(): Boolean
 }
