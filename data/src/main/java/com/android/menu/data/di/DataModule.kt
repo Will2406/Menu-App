@@ -2,7 +2,7 @@ package com.android.menu.data.di
 
 import android.content.Context
 import androidx.room.Room
-import com.android.menu.data.local.MenuDatabase
+import com.android.menu.data.local.database.MenuDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

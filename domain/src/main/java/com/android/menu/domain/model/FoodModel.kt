@@ -1,21 +1,21 @@
 package com.android.menu.domain.model
 
 
-import com.android.menu.data.local.FoodEntity
+import com.android.menu.data.local.database.FoodEntity
 import com.android.menu.data.remote.model.FoodResponse
 
 
 data class FoodModel(
-    var id: String,
-    var name: String,
-    var rating: String,
-    var reviewers: String,
-    var calories: String,
-    var image: String,
+    var id: String = "",
+    var name: String = "",
+    var rating: String = "",
+    var reviewers: String = "",
+    var calories: String = "",
+    var image: String = "",
     var isSaved: Boolean = false,
-    var price: String,
-    var description: String,
-    var ingredientList: List<IngredientModel>
+    var price: String = "",
+    var description: String = "",
+    var ingredientList: List<IngredientModel> = mutableListOf()
 )
 
 fun FoodModel.convertToEntity() = FoodEntity(
@@ -57,4 +57,3 @@ fun FoodEntity.convertToModel() = FoodModel(
 
 fun List<FoodEntity>.convertLocalToModel() = map(FoodEntity::convertToModel)
 
-fun List<FoodResponse>.convertRemoteToModel() = map(FoodResponse::convertToModel)

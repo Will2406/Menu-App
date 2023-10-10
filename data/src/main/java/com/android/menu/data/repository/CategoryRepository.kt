@@ -12,15 +12,6 @@ class CategoryRepository @Inject constructor(
     private val remote: CategoryRemoteDataSource
 ) {
 
-    suspend fun getCategoryList(): Flow<List<CategoryResponse>> = supervisorScope {
-        when (val result = remote.getAll()) {
-            is DataResult.Success ->
-                flow {
-                    emit(result.data.categoryList)
-                }
+    suspend fun getCategoryList(): Flow<List<CategoryResponse?>> = remote.getAll()
 
-            is DataResult.Error -> throw Error()
-
-        }
-    }
 }

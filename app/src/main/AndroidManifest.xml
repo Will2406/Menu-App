@@ -16,15 +16,20 @@
         android:theme="@style/Theme.Menu"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.activity.InitialActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.Menu">
+            android:theme="@style/Theme.Menu.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.MainActivity"
+            android:exported="true">
+
         </activity>
 
         <meta-data

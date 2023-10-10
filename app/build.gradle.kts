@@ -91,6 +91,10 @@ dependencies {
     implementation(Dependencies.Maps.Services)
     implementation(Dependencies.Maps.Compose)
 
+    implementation ("androidx.compose.material:material-icons-extended:1.5.1")
+    implementation ("androidx.core:core-splashscreen:1.0.1")
+
+
     implementation(project(":domain"))
 
 

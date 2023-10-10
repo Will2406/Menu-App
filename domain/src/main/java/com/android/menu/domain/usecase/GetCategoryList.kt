@@ -14,6 +14,8 @@ class GetCategoryList @Inject constructor(
 ) : UseCase.WithoutParams<Flow<List<CategoryModel>>> {
 
     override suspend fun invoke(): Flow<List<CategoryModel>> {
-        return repository.getCategoryList().map { it.convertToModel() }
+        return repository.getCategoryList().map { categoryList ->
+            categoryList.map { it?.convertToModel() ?: CategoryModel() }
+        }
     }
 }

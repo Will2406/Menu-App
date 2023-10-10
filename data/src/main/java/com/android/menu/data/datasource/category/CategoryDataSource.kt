@@ -1,11 +1,11 @@
 package com.android.menu.data.datasource.category
 
 
-import com.android.menu.data.core.DataResult
-import com.android.menu.data.remote.model.CategoryListResponse
+import com.android.menu.data.remote.model.CategoryResponse
+import kotlinx.coroutines.flow.Flow
 
 interface CategoryRemoteDataSource {
-    suspend fun getAll(): DataResult<CategoryListResponse>
+    suspend fun getAll(): Flow<List<CategoryResponse?>>
 }
 
 interface CategoryLocalDataSource {
