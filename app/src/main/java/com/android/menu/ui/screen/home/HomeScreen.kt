@@ -37,7 +37,7 @@ import com.android.menu.FoodMainItem
 import com.android.menu.domain.core.toJson
 import com.android.menu.domain.model.CategoryModel
 import com.android.menu.domain.model.FoodModel
-import com.android.menu.navigation.main.BottomBarRoute
+import com.android.menu.navigation.main.MainRoute
 import com.android.menu.screen.util.CategorySectionShimmer
 import com.android.menu.screen.util.FoodSectionShimmer
 import kotlinx.coroutines.flow.StateFlow
@@ -101,7 +101,7 @@ fun FoodSection(navHostController: NavHostController, foodTrendingList: List<Foo
                 modifier = Modifier
                     .width(itemSize)
                     .clickable {
-                        navHostController.navigate(BottomBarRoute.FoodDetailScreen.createRoot(it.toJson()))
+                        navHostController.navigate(MainRoute.FoodDetailScreen.createRoot(it.toJson()))
                     },
                 foodTrending = it
             )

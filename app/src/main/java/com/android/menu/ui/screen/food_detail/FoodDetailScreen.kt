@@ -42,7 +42,7 @@ import com.android.menu.HeaderComponent
 import com.android.menu.OrientationType
 import com.android.menu.domain.model.FoodModel
 import com.android.menu.domain.model.IngredientModel
-import com.android.menu.navigation.main.BottomBarRoute
+import com.android.menu.navigation.main.MainRoute
 import com.android.menu.ui.theme.gray50Percent
 import com.android.menu.ui.theme.transparent
 import com.android.menu.R
@@ -133,7 +133,7 @@ private fun FoodDetailScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(16.dp),
-                onClick = { navHostController.navigate(BottomBarRoute.FoodMapScreen.route) },
+                onClick = { navHostController.navigate(MainRoute.FoodMapScreen.route) },
                 colors = ButtonDefaults.buttonColors(containerColor =  Color(0xFFf47a5b))
             ) {
                 Text(

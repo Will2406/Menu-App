@@ -2,7 +2,6 @@ package com.android.menu.ui.activity
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.android.menu.activity.InitialUiState
 import com.android.menu.domain.usecase.CheckSession
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay

@@ -4,8 +4,13 @@ sealed class InitialRoute(
     val route: String,
     val title: String,
 ) {
-    object Login : InitialRoute(
-        route = "Login",
-        title = "Login"
+    object LoginScreen : InitialRoute(
+        route = "LoginScreen",
+        title = "LoginScreen"
+    )
+
+    object RegisterScreen : InitialRoute(
+        route = "RegisterScreen",
+        title = "RegisterScreen"
     )
 }

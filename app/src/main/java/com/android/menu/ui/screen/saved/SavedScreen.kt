@@ -22,7 +22,7 @@ import com.google.accompanist.flowlayout.FlowRow
 import com.google.accompanist.flowlayout.SizeMode
 import com.android.menu.FoodMainItem
 import com.android.menu.domain.core.toJson
-import com.android.menu.navigation.main.BottomBarRoute
+import com.android.menu.navigation.main.MainRoute
 import kotlinx.coroutines.flow.StateFlow
 
 
@@ -66,7 +66,7 @@ private fun SavedScreen(navHostController: NavHostController, viewModel: SavedVi
                     modifier = Modifier
                         .width(itemSize)
                         .clickable {
-                            navHostController.navigate(BottomBarRoute.FoodDetailScreen.createRoot(it.toJson()))
+                            navHostController.navigate(MainRoute.FoodDetailScreen.createRoot(it.toJson()))
                         },
                     foodTrending = it
                 )

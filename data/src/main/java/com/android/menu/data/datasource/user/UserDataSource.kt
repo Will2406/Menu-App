@@ -8,6 +8,7 @@ import kotlinx.coroutines.flow.Flow
 interface UserRemoteDataSource {
     suspend fun googleSignInClient(): Intent
     suspend fun signInWithGoogleCredential(intent: Intent): Flow<UserResponse?>
+    suspend fun createUserWithEmailAndPassword(email: String, password: String): Flow<UserResponse?>
 }
 
 interface UserLocalDataSource {

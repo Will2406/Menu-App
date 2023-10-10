@@ -9,7 +9,7 @@ import androidx.compose.material.Scaffold
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
 import com.android.menu.navigation.main.BottomNavigationBar
-import com.android.menu.navigation.main.Navigation
+import com.android.menu.navigation.main.MainNavigation
 import com.android.menu.ui.theme.MenuTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -29,7 +29,7 @@ class MainActivity : ComponentActivity() {
                         modifier = Modifier
                             .padding(padding)
                     ) {
-                        Navigation(navController = navController)
+                        MainNavigation(navController = navController)
                     }
                 }
             }

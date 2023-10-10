@@ -1,4 +1,4 @@
-package com.android.menu.screen
+package com.android.menu.ui.screen
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize

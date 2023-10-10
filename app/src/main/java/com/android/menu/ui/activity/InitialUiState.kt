@@ -1,4 +1,4 @@
-package com.android.menu.activity
+package com.android.menu.ui.activity
 
 data class InitialUiState(
     val isSplashLoading: Boolean = true,

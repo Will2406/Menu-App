@@ -29,7 +29,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.android.menu.FoodMainItem
 import com.android.menu.domain.core.toJson
-import com.android.menu.navigation.main.BottomBarRoute
+import com.android.menu.navigation.main.MainRoute
 import kotlinx.coroutines.flow.StateFlow
 
 
@@ -77,7 +77,7 @@ fun SearchScreen(navHostController: NavHostController, state: StateFlow<SearchUi
                                 foodTrending = it,
                                 modifier = Modifier.clickable {
                                     navHostController.navigate(
-                                        BottomBarRoute.FoodDetailScreen.createRoot(it.toJson())
+                                        MainRoute.FoodDetailScreen.createRoot(it.toJson())
                                     )
                                 }
                             )
@@ -97,7 +97,7 @@ fun SearchScreen(navHostController: NavHostController, state: StateFlow<SearchUi
                         foodTrending = it,
                         modifier = Modifier.clickable {
                             navHostController.navigate(
-                                BottomBarRoute.FoodDetailScreen.createRoot(it.toJson())
+                                MainRoute.FoodDetailScreen.createRoot(it.toJson())
                             )
                         })
                 }

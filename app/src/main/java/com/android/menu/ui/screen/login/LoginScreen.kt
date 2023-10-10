@@ -1,4 +1,4 @@
-package com.android.menu.screen.login
+package com.android.menu.ui.screen.login
 
 import android.app.Activity
 import android.content.Context
@@ -6,6 +6,7 @@ import android.content.Intent
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -46,23 +47,31 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.android.menu.activity.MainActivity
 import com.android.menu.R
 import com.android.menu.SocialMediaButton
-import kotlinx.coroutines.flow.StateFlow
+import com.android.menu.navigation.initial.InitialRoute
+import com.android.menu.screen.login.LoginUiState
+import com.android.menu.screen.login.LoginViewModel
 
 
 @Composable
-fun InitLoginScreen(context: Context) {
+fun InitLoginScreen(context: Context, navController: NavController) {
 
     val loginViewModel: LoginViewModel = hiltViewModel()
-    LoginScreen(context = context, viewModel = loginViewModel, state = loginViewModel.viewState)
+
+    LoginScreen(
+        context = context,
+        navController = navController,
+        viewModel = loginViewModel,
+        state = loginViewModel.viewState.collectAsState().value
+    )
 }
 
 @Composable
-private fun LoginScreen(context: Context, viewModel: LoginViewModel, state: StateFlow<LoginUiState>) {
-
-    val state = state.collectAsState().value
+private fun LoginScreen(context: Context, navController: NavController, viewModel: LoginViewModel, state: LoginUiState) {
 
     when {
         state.checkLoginSuccessful -> {
@@ -70,7 +79,6 @@ private fun LoginScreen(context: Context, viewModel: LoginViewModel, state: Stat
             (context as Activity).finish()
         }
     }
-
 
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
@@ -81,6 +89,7 @@ private fun LoginScreen(context: Context, viewModel: LoginViewModel, state: Stat
     ) { result ->
         viewModel.checkLoginSuccessfulWithGoogle(intentResult = result.data)
     }
+
 
     ConstraintLayout(
         modifier = Modifier.fillMaxSize()
@@ -111,7 +120,7 @@ private fun LoginScreen(context: Context, viewModel: LoginViewModel, state: Stat
             )
 
             Text(
-                text = "Login in to your account",
+                text = "LoginScreen in to your account",
                 style = MaterialTheme.typography.bodySmall,
                 fontSize = 18.sp
             )
@@ -186,7 +195,7 @@ private fun LoginScreen(context: Context, viewModel: LoginViewModel, state: Stat
 
             Button(
                 modifier = Modifier.fillMaxWidth(),
-                onClick = { viewModel.login()},
+                onClick = { viewModel.login() },
                 colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFFE3F19))
             ) {
                 Text(
@@ -244,8 +253,21 @@ private fun LoginScreen(context: Context, viewModel: LoginViewModel, state: Stat
                     linkTo(start = parent.start, end = parent.end)
                 }
         ) {
-            Text(text = "Don't have account?  ")
-            Text(text = "Sign Up")
+
+            Text(
+                text = "Don't have account?  ",
+                fontSize = 16.sp,
+                style = MaterialTheme.typography.bodySmall,
+            )
+            Text(
+                text = "Sign Up",
+                fontSize = 16.sp,
+                style = MaterialTheme.typography.titleSmall,
+                color = Color(0xFFFE3F19),
+                modifier = Modifier.clickable {
+                    navController.navigate(InitialRoute.RegisterScreen.route)
+                }
+            )
         }
     }
 
@@ -255,6 +277,6 @@ private fun LoginScreen(context: Context, viewModel: LoginViewModel, state: Stat
 @Composable
 fun LoginScreenPreview() {
     MaterialTheme {
-        InitLoginScreen(context = LocalContext.current)
+        InitLoginScreen(context = LocalContext.current, navController = rememberNavController())
     }
 }

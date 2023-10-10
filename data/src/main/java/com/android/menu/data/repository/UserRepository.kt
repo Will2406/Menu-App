@@ -6,6 +6,7 @@ import com.android.menu.data.datasource.user.UserRemoteDataSource
 import com.android.menu.data.remote.model.convertToEntity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
@@ -26,6 +27,12 @@ class UserRepository @Inject constructor(
                 emit(checkLoginUser)
             }
     }.flowOn(Dispatchers.IO)
+
+    suspend fun registerUser(email: String, password: String) = flow {
+        remote.createUserWithEmailAndPassword(email, password).collect {
+            emit(it != null)
+        }
+    }
 
     suspend fun checkSession() = local.getValidatedSession()
 

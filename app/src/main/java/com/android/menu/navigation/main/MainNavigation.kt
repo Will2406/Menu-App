@@ -17,7 +17,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.navArgument
 import com.android.menu.screen.FoodMapScreen
 import com.android.menu.screen.ProfileScreen
-import com.android.menu.screen.StatsScreen
+import com.android.menu.ui.screen.StatsScreen
 import com.android.menu.screen.food_detail.InitFoodDetailScreen
 import com.android.menu.screen.home.InitHomeScreen
 import com.android.menu.screen.saved.InitSavedScreen
@@ -26,33 +26,33 @@ import com.android.menu.R
 
 
 @Composable
-fun Navigation(navController: NavHostController) {
-    NavHost(navController = navController, startDestination = BottomBarRoute.HomeScreen.route) {
-        composable(route = BottomBarRoute.HomeScreen.route) { InitHomeScreen(navController) }
-        composable(route = BottomBarRoute.SearchScreen.route) { InitSearchScreen(navController) }
-        composable(route = BottomBarRoute.StatsScreen.route) { StatsScreen() }
-        composable(route = BottomBarRoute.SavedScreen.route) { InitSavedScreen(navController) }
-        composable(route = BottomBarRoute.ProfileScreen.route) { ProfileScreen() }
+fun MainNavigation(navController: NavHostController) {
+    NavHost(navController = navController, startDestination = MainRoute.HomeScreen.route) {
+        composable(route = MainRoute.HomeScreen.route) { InitHomeScreen(navController) }
+        composable(route = MainRoute.SearchScreen.route) { InitSearchScreen(navController) }
+        composable(route = MainRoute.StatsScreen.route) { StatsScreen() }
+        composable(route = MainRoute.SavedScreen.route) { InitSavedScreen(navController) }
+        composable(route = MainRoute.ProfileScreen.route) { ProfileScreen() }
         composable(
-            route = BottomBarRoute.FoodDetailScreen.route,
+            route = MainRoute.FoodDetailScreen.route,
             arguments = listOf(
                 navArgument("food") {
                     type = NavType.StringType
                 }
             )
         ) { InitFoodDetailScreen(navController) }
-        composable(route = BottomBarRoute.FoodMapScreen.route) { FoodMapScreen() }
+        composable(route = MainRoute.FoodMapScreen.route) { FoodMapScreen() }
     }
 }
 
 @Composable
 fun BottomNavigationBar(navController: NavHostController) {
     val listItems = listOf(
-        BottomBarRoute.HomeScreen,
-        BottomBarRoute.SearchScreen,
-        BottomBarRoute.StatsScreen,
-        BottomBarRoute.SavedScreen,
-        BottomBarRoute.ProfileScreen
+        MainRoute.HomeScreen,
+        MainRoute.SearchScreen,
+        MainRoute.StatsScreen,
+        MainRoute.SavedScreen,
+        MainRoute.ProfileScreen
     )
 
     NavigationBar {

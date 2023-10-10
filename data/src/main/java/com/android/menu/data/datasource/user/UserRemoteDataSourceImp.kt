@@ -35,6 +35,22 @@ class UserRemoteDataSourceImpl @Inject constructor(
         return googleSignInClient.signInIntent
     }
 
+    override suspend fun createUserWithEmailAndPassword(email: String, password: String): Flow<UserResponse?> {
+        val authResult = auth.createUserWithEmailAndPassword(email, password).await()
+        return flow {
+            authResult?.user?.let {
+                emit(
+                    UserResponse(
+                        uid = it.uid,
+                        name = it.displayName,
+                        image = it.photoUrl,
+                        email = it.email
+                    )
+                )
+            } ?: emit(null)
+        }
+    }
+
     override suspend fun signInWithGoogleCredential(intent: Intent): Flow<UserResponse?> {
         val account = GoogleSignIn.getSignedInAccountFromIntent(intent)
         return if (account.isSuccessful) {
